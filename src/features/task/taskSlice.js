@@ -29,3 +29,33 @@ export const createTask = createAsyncThunk(
     }
   }
 );
+
+export const taskSlice = createSlice({
+  name: "task",
+  initialState,
+  reducers: {
+    reset: (state) => {
+      return initialState;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(createTask.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createTask.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.tasks.push(action.payload);
+      })
+      .addCase(createTask.rejected, (state, action) => {
+        state.isError = true;
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.message = action.payload;
+      });
+  },
+});
+
+export const { reset } = taskSlice.actions;
+export default taskSlice.reducer;
