@@ -1,0 +1,125 @@
+nav.app__nav {
+  display: flex;
+  width: 100%;
+  height: 5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+  div.app__nav--logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 100%;
+    border: 1px solid red;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  ul.app__nav--menubar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border: 1px solid green;
+    margin-right: calc(1vw + 3rem);
+    @media screen and (max-width: 900px) {
+      display: none;
+    }
+    // No User
+    a {
+      padding: 1rem 2rem;
+      border: 1px solid red;
+      margin-right: 1rem;
+    }
+    // User
+    div.app__nav--menubar-user {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      a.app__nav--menubar-user--link {
+        text-decoration: none;
+        padding: 0rem;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        img {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          border: 1px solid red;
+        }
+        span {
+          padding: 1rem;
+        }
+      }
+    }
+  }
+  div.app__nav--hamburder {
+    width: 60px;
+    height: 60px;
+    border: 1px solid blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    position: relative;
+    @media screen and (min-width: 900px) {
+      display: none;
+    }
+    svg {
+      cursor: pointer;
+      width: 80%;
+      height: 80%;
+    }
+    // Menu List
+    div.hamburger__menu {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 70%;
+      background-color: rgba(255, 0, 0, 0.33);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      svg {
+        width: 60px;
+        height: 60px;
+      }
+      ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // User
+        div {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          a {
+            border: none;
+          }
+          img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+          }
+        }
+        // No User
+        a {
+          padding: 1rem;
+          border: 1px solid white;
+        }
+      }
+    }
+  }
+}
