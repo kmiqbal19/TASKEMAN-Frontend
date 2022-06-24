@@ -2,7 +2,7 @@ nav.app__nav {
   display: flex;
   width: 100%;
   height: 5rem;
-  background-color: rgba(0, 0, 0, 0.5);
+  // background-color: rgba(0, 0, 0, 0.5);
   color: white;
   justify-content: space-between;
   align-items: center;
@@ -12,49 +12,132 @@ nav.app__nav {
     align-items: center;
     width: 400px;
     height: 100%;
-    border: 1px solid red;
+    // border: 1px solid red;
     img {
-      width: 100%;
-      height: 100%;
+      width: 80%;
+      height: 90%;
     }
   }
+  // MENU - DESKTOP
   ul.app__nav--menubar {
     display: flex;
-    justify-content: center;
+    flex: 1;
+    justify-content: flex-end;
     align-items: center;
     height: 100%;
-    border: 1px solid green;
-    margin-right: calc(1vw + 3rem);
+    margin-right: calc(1vw + 1rem);
+    position: relative;
     @media screen and (max-width: 900px) {
       display: none;
     }
+    &::after {
+      content: "";
+      width: 100%;
+      height: 2px;
+      background: rgb(255, 255, 255);
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(0, 0, 0, 1) 20%,
+        rgba(42, 42, 42, 1) 87%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+    }
     // No User
     a {
-      padding: 1rem 2rem;
-      border: 1px solid red;
-      margin-right: 1rem;
+      text-decoration: none;
+      position: relative;
+      font-size: 1.3rem;
+      color: black;
+      margin-right: 2rem;
+      &::after {
+        content: "";
+        position: absolute;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background-color: black;
+        bottom: -2.25rem;
+        left: 38%;
+        transform: scale(0.5);
+        transition: all 0.4s ease-out;
+      }
+      &:hover {
+        &::after {
+          transform: scale(1);
+        }
+      }
+      &:active {
+        &::after {
+          transform: scale(0.5);
+        }
+      }
+    }
+    a:last-of-type {
+      margin-right: 5rem;
     }
     // User
     div.app__nav--menubar-user {
-      width: 100%;
       height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
+      a {
+        text-decoration: none;
+        position: relative;
+        font-size: 1.3rem;
+        color: black;
+        &::after {
+          content: "";
+          position: absolute;
+          width: 22px;
+          height: 22px;
+          border-radius: 50%;
+          background-color: black;
+          bottom: -2.25rem;
+          left: 38%;
+          transform: scale(0.5);
+          transition: all 0.4s ease-out;
+        }
+        &:hover {
+          &::after {
+            transform: scale(1);
+          }
+        }
+        &:active {
+          &::after {
+            transform: scale(0.5);
+          }
+        }
+      }
       a.app__nav--menubar-user--link {
         text-decoration: none;
         padding: 0rem;
-        height: 100%;
-        width: 100%;
+
         display: flex;
         align-items: center;
         justify-content: center;
         border: none;
+        &::after {
+          bottom: -1.25rem;
+          left: 50%;
+        }
+        // &:hover {
+        //   img {
+        //     transform: scale(0.95);
+        //   }
+        // }
         img {
-          width: 60px;
-          height: 60px;
+          width: 45px;
+          height: 45px;
           border-radius: 50%;
-          border: 1px solid red;
+
+          margin-left: 1rem;
+          transition: all 0.3s ease-out;
         }
         span {
           padding: 1rem;
@@ -62,10 +145,11 @@ nav.app__nav {
       }
     }
   }
+  // MENU - TAB / MOBILE
   div.app__nav--hamburder {
     width: 60px;
     height: 60px;
-    border: 1px solid blue;
+    // border: 1px solid blue;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -78,27 +162,34 @@ nav.app__nav {
       cursor: pointer;
       width: 80%;
       height: 80%;
+      color: black;
+      transition: all 0.3s ease-out;
+      &:hover {
+        transform: scale(1.1);
+      }
     }
-    // Menu List
+    // Menu List (Hamburger Active)
     div.hamburger__menu {
       position: fixed;
       top: 0;
       bottom: 0;
       right: 0;
-      width: 70%;
-      background-color: rgba(255, 0, 0, 0.33);
+      width: 60%;
+      background-color: white;
+      box-shadow: 3px 3px 20px black;
       display: flex;
-      justify-content: center;
-      align-items: center;
+      justify-content: flex-start;
+      align-items: flex-start;
       flex-direction: column;
+
       svg {
-        width: 60px;
-        height: 60px;
+        width: 55px;
+        height: 55px;
+        align-self: flex-end;
+        margin: 0.8rem 1rem 0rem 0rem;
       }
       ul {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        margin-left: 5rem;
         // User
         div {
           display: flex;
@@ -107,17 +198,50 @@ nav.app__nav {
           flex-direction: column;
           a {
             border: none;
+            margin: 0.5rem;
+            color: rgba(0, 0, 0, 1);
+            &:active {
+              border-bottom: 3px solid black;
+              color: rgba(42, 42, 42, 1);
+            }
           }
           img {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
+          }
+          span {
+            color: black;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            position: relative;
+            &::after {
+              content: "";
+              width: 180%;
+              height: 2px;
+              background: rgb(255, 255, 255);
+              background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(0, 0, 0, 1) 20%,
+                rgba(42, 42, 42, 1) 87%,
+                rgba(255, 255, 255, 0) 100%
+              );
+              position: absolute;
+              bottom: -1rem;
+              left: -3rem;
+            }
           }
         }
         // No User
         a {
           padding: 1rem;
           border: 1px solid white;
+          font-size: 1.2rem;
+          margin: 1rem;
+          text-decoration: none;
+          text-transform: uppercase;
         }
       }
     }

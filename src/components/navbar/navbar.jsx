@@ -10,12 +10,15 @@ function NavBar() {
     <nav className="app__nav">
       <div className="app__nav--logo">
         <Link to="/">
-          <img src="£" alt="nav-logo" />
+          <img src="https://i.ibb.co/ZHFdJhW/city.png" alt="nav-logo" />
         </Link>
       </div>
+      {/* DESKTOP */}
       <ul className="app__nav--menubar">
         {user ? (
           <div className="app__nav--menubar-user">
+            <Link to="/tasks">Tasks</Link>
+            <Link to="/">Add Task</Link>
             <Link className="app__nav--menubar-user--link" to="user-settings">
               <img
                 src="https://i.ibb.co/fQMrMN1/286386589-562588748572129-2361478305613804820-n.jpg"
@@ -35,6 +38,8 @@ function NavBar() {
           </>
         )}
       </ul>
+
+      {/* MOBILE */}
       <div className="app__nav--hamburder">
         <RiMenu3Fill onClick={() => setToggle(true)} />
         {toggle && (
@@ -50,16 +55,28 @@ function NavBar() {
                     />
                   </Link>
                   <span>User Name</span>
+                  <Link to="/" onClick={() => setToggle(false)}>
+                    Home
+                  </Link>
+                  <Link to="/tasks" onClick={() => setToggle(false)}>
+                    Tasks
+                  </Link>
+                  <Link to="/" onClick={() => setToggle(false)}>
+                    Add task
+                  </Link>
                 </div>
               ) : (
-                <>
+                <div>
+                  <Link to="/" onClick={() => setToggle(false)}>
+                    Home
+                  </Link>
                   <Link to="/login" onClick={() => setToggle(false)}>
                     Login
                   </Link>
                   <Link to="/signup" onClick={() => setToggle(false)}>
                     SignUp
                   </Link>
-                </>
+                </div>
               )}
             </ul>
           </div>
