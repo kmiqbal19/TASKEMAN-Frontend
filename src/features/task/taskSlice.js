@@ -2,6 +2,7 @@ import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
+  task: null,
   tasks: [],
   isLoading: false,
   isError: false,
@@ -66,6 +67,29 @@ export const deleteTask = createAsyncThunk(
     }
   }
 );
+// Update task
+export const updateTask = createAsyncThunk(
+  "task/updateTask",
+  async (taskUpdateData, thunkAPI) => {
+    const token = thunkAPI.getState().auth.userData.token;
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const response = await axios.patch(
+        `/tasks/${taskUpdateData.taskId}`,
+        taskUpdateData.updateData,
+        config
+      );
+      return response.data.data.task;
+    } catch (err) {
+      const message = err.response.data.message || err.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 
 export const taskSlice = createSlice({
   name: "task",
@@ -83,6 +107,7 @@ export const taskSlice = createSlice({
       .addCase(createTask.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
+        state.task = action.payload;
         state.tasks.push(action.payload);
       })
       .addCase(createTask.rejected, (state, action) => {
@@ -90,6 +115,7 @@ export const taskSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = false;
         state.message = action.payload;
+        state.task = null;
       })
       .addCase(getTasks.pending, (state) => {
         state.isLoading = true;
@@ -116,6 +142,20 @@ export const taskSlice = createSlice({
         });
       })
       .addCase(deleteTask.rejected, (state, action) => {
+        state.isError = true;
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.message = action.payload;
+      })
+      .addCase(updateTask.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateTask.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.task = action.payload;
+      })
+      .addCase(updateTask.rejected, (state, action) => {
         state.isError = true;
         state.isLoading = false;
         state.isSuccess = false;

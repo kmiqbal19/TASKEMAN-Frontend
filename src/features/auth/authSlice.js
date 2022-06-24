@@ -70,6 +70,7 @@ export const updateUser = createAsyncThunk(
     }
   }
 );
+// Update Password
 export const updatePassword = createAsyncThunk(
   "user/updatePassword",
   async (updatePasswordData, thunkAPI) => {
