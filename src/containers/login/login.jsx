@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "./login.scss";
 import { login } from "../../features/auth/authSlice.js";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const { isLoading, isSuccess } = useSelector((store) => store.auth);
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(
@@ -14,6 +15,7 @@ function LogIn() {
         password,
       })
     );
+    if (isSuccess) window.location.replace("/");
   };
   return (
     <div className="app__login">
@@ -31,7 +33,9 @@ function LogIn() {
           type="password"
           placeholder="Enter your password..."
         />
-        <button type="submit">Log In</button>
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? "Logging..." : "Log In"}
+        </button>
       </form>
     </div>
   );

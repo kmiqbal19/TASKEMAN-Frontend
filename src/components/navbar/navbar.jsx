@@ -8,6 +8,7 @@ import { logout } from "../../features/auth/authSlice";
 function NavBar() {
   const userData = useSelector((store) => store.auth.userData);
   const user = userData ? userData.user : null;
+  const username = user ? user.name.split(" ")[0] : "Username";
   const dispatch = useDispatch();
   const [toggle, setToggle] = useState(false);
   const handleLogout = () => {
@@ -32,7 +33,7 @@ function NavBar() {
                 src={`http://localhost:5000/users/${user.photo}`}
                 alt="user"
               />
-              <span>{user.name}</span>
+              <span>{username}</span>
             </Link>
           </div>
         ) : (
