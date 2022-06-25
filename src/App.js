@@ -5,6 +5,10 @@ import LogIn from "./containers/login/login.jsx";
 import SignUp from "./containers/signup/signup.jsx";
 import Home from "./containers/home/home.jsx";
 import { useSelector } from "react-redux";
+import UserSettings from "./containers/userSettings/userSettings.jsx";
+import Tasks from "./containers/tasks/tasks.jsx";
+import AddTask from "./containers/addTask/addTask.jsx";
+import SinglePageTask from "./containers/singlePageTask/singlePageTask.jsx";
 function App() {
   const userData = useSelector((store) => store.auth.userData);
   const user = userData ? userData.user : null;
@@ -15,6 +19,16 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={user ? <Home /> : <LogIn />} />
         <Route path="/signup" element={user ? <Home /> : <SignUp />} />
+        <Route
+          path="/user-settings"
+          element={user ? <UserSettings /> : <LogIn />}
+        />
+        <Route path="/tasks" element={user ? <Tasks /> : <LogIn />} />
+        <Route
+          path="/tasks/:id"
+          element={user ? <SinglePageTask /> : <LogIn />}
+        />
+        <Route path="/add-task" element={user ? <AddTask /> : <LogIn />} />
       </Routes>
     </>
   );

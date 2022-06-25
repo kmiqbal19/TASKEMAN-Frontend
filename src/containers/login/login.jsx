@@ -5,9 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const dispatch = useDispatch();
-  const { isLoading, isSuccess } = useSelector((store) => store.auth);
-  const handleSubmit = (e) => {
+  const { isLoading } = useSelector((store) => store.auth);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(
       login({
@@ -15,7 +17,9 @@ function LogIn() {
         password,
       })
     );
-    if (isSuccess) window.location.replace("/");
+    setTimeout(() => {
+      window.location.replace("/");
+    }, 1500);
   };
   return (
     <div className="app__login">
@@ -33,7 +37,7 @@ function LogIn() {
           type="password"
           placeholder="Enter your password..."
         />
-        <button type="submit" disabled={isLoading}>
+        <button type="submit" disabled={isLoading || !email || !password}>
           {isLoading ? "Logging..." : "Log In"}
         </button>
       </form>

@@ -26,7 +26,7 @@ function NavBar() {
         {user ? (
           <div className="app__nav--menubar-user">
             <Link to="/tasks">Tasks</Link>
-            <Link to="/">Add Task</Link>
+            <Link to="/add-task">Add Task</Link>
             <li onClick={handleLogout}>Log Out</li>
             <Link className="app__nav--menubar-user--link" to="user-settings">
               <img

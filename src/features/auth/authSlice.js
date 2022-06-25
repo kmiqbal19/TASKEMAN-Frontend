@@ -128,6 +128,9 @@ export const authSlice = createSlice({
       })
       .addCase(login.pending, (state) => {
         state.isLoading = true;
+        state.isSuccess = false;
+        state.isError = false;
+        state.message = "";
       })
       .addCase(login.fulfilled, (state, action) => {
         state.userData = action.payload;
