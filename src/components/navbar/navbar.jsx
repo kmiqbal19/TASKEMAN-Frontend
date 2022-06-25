@@ -3,9 +3,16 @@ import { Link } from "react-router-dom";
 import { RiMenu3Fill } from "react-icons/ri";
 import { HiX } from "react-icons/hi";
 import "./navbar.scss";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../features/auth/authSlice";
 function NavBar() {
-  const user = true;
+  const userData = useSelector((store) => store.auth.userData);
+  const user = userData ? userData.user : null;
+  const dispatch = useDispatch();
   const [toggle, setToggle] = useState(false);
+  const handleLogout = () => {
+    dispatch(logout());
+  };
   return (
     <nav className="app__nav">
       <div className="app__nav--logo">
@@ -19,12 +26,13 @@ function NavBar() {
           <div className="app__nav--menubar-user">
             <Link to="/tasks">Tasks</Link>
             <Link to="/">Add Task</Link>
+            <li onClick={handleLogout}>Log Out</li>
             <Link className="app__nav--menubar-user--link" to="user-settings">
               <img
-                src="https://i.ibb.co/fQMrMN1/286386589-562588748572129-2361478305613804820-n.jpg"
+                src={`http://localhost:5000/users/${user.photo}`}
                 alt="user"
               />
-              <span>User Name</span>
+              <span>{user.name}</span>
             </Link>
           </div>
         ) : (
@@ -63,6 +71,9 @@ function NavBar() {
                   </Link>
                   <Link to="/" onClick={() => setToggle(false)}>
                     Add task
+                  </Link>
+                  <Link to="/" onClick={() => setToggle(false)}>
+                    Log Out
                   </Link>
                 </div>
               ) : (

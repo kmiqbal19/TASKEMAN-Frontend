@@ -6,6 +6,9 @@ nav.app__nav {
   color: white;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
   div.app__nav--logo {
     display: flex;
     justify-content: center;
@@ -27,7 +30,7 @@ nav.app__nav {
     height: 100%;
     margin-right: calc(1vw + 1rem);
     position: relative;
-    @media screen and (max-width: 900px) {
+    @media screen and (max-width: 1100px) {
       display: none;
     }
     &::after {
@@ -91,6 +94,7 @@ nav.app__nav {
         position: relative;
         font-size: 1.3rem;
         color: black;
+        margin-right: 5rem;
         &::after {
           content: "";
           position: absolute;
@@ -117,7 +121,7 @@ nav.app__nav {
       a.app__nav--menubar-user--link {
         text-decoration: none;
         padding: 0rem;
-
+        margin-right: 0rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -143,6 +147,37 @@ nav.app__nav {
           padding: 1rem;
         }
       }
+      li {
+        list-style: none;
+        text-decoration: none;
+        position: relative;
+        font-size: 1.3rem;
+        color: black;
+        margin-right: 2rem;
+        cursor: pointer;
+        &::after {
+          content: "";
+          position: absolute;
+          width: 22px;
+          height: 22px;
+          border-radius: 50%;
+          background-color: black;
+          bottom: -2.25rem;
+          left: 38%;
+          transform: scale(0.5);
+          transition: all 0.4s ease-out;
+        }
+        &:hover {
+          &::after {
+            transform: scale(1);
+          }
+        }
+        &:active {
+          &::after {
+            transform: scale(0.5);
+          }
+        }
+      }
     }
   }
   // MENU - TAB / MOBILE
@@ -155,7 +190,7 @@ nav.app__nav {
     justify-content: center;
     margin-right: 1rem;
     position: relative;
-    @media screen and (min-width: 900px) {
+    @media screen and (min-width: 1101px) {
       display: none;
     }
     svg {
