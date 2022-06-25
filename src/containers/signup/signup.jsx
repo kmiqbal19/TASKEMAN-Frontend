@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./signup.scss";
 import { signup } from "../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 function SignUp() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -10,7 +11,12 @@ function SignUp() {
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isLoading } = useSelector((store) => store.auth);
+  const { isLoading, isError } = useSelector((store) => store.auth);
+  useEffect(() => {
+    if (isError) {
+      toast.error("Something went wrong.😢 Try Again!");
+    }
+  }, [isError]);
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(

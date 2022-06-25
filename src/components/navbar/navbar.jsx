@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { RiMenu3Fill } from "react-icons/ri";
 import { HiX } from "react-icons/hi";
+import { IoIosLogIn, IoIosLogOut } from "react-icons/io";
+import { AiOutlineUserAdd, AiOutlineFileAdd } from "react-icons/ai";
+import { BsListTask } from "react-icons/bs";
 import "./navbar.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../features/auth/authSlice";
@@ -25,24 +28,33 @@ function NavBar() {
       <ul className="app__nav--menubar">
         {user ? (
           <div className="app__nav--menubar-user">
-            <Link to="/tasks">Tasks</Link>
-            <Link to="/add-task">Add Task</Link>
-            <li onClick={handleLogout}>Log Out</li>
+            <Link to="/tasks">
+              <BsListTask /> Tasks
+            </Link>
+            <Link to="/add-task">
+              <AiOutlineFileAdd /> Add Task
+            </Link>
+            <li onClick={handleLogout}>
+              <IoIosLogOut /> Log Out
+            </li>
             <Link className="app__nav--menubar-user--link" to="user-settings">
               <img
                 src={`http://localhost:5000/users/${user.photo}`}
                 alt="user"
               />
-              <span>{username}</span>
+              <span>
+                {username.charAt(0).toUpperCase() +
+                  username.slice(1).toLowerCase()}
+              </span>
             </Link>
           </div>
         ) : (
           <>
             <Link className="app__nav--menubar-item" to="/login">
-              Login
+              <IoIosLogIn /> Login
             </Link>
             <Link className="app__nav--menubar-item" to="/signup">
-              Sign Up
+              <AiOutlineUserAdd /> Sign Up
             </Link>
           </>
         )}

@@ -58,6 +58,9 @@ nav.app__nav {
       font-size: 1.3rem;
       color: black;
       margin-right: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       &::after {
         content: "";
         position: absolute;
@@ -79,6 +82,10 @@ nav.app__nav {
         &::after {
           transform: scale(0.5);
         }
+      }
+      svg {
+        margin-top: 5px;
+        margin-right: 5px;
       }
     }
     a:last-of-type {
@@ -105,7 +112,7 @@ nav.app__nav {
           border-radius: 50%;
           background-color: black;
           bottom: -0.75rem;
-          left: 38%;
+          left: 45%;
           transform: scale(0.5);
           transition: all 0.4s ease-out;
         }
@@ -150,6 +157,8 @@ nav.app__nav {
         }
       }
       li {
+        display: flex;
+        align-items: center;
         padding: 1.5rem;
         list-style: none;
         text-decoration: none;
@@ -166,7 +175,7 @@ nav.app__nav {
           border-radius: 50%;
           background-color: black;
           bottom: -0.75rem;
-          left: 38%;
+          left: 45%;
           transform: scale(0.5);
           transition: all 0.4s ease-out;
         }
@@ -179,6 +188,9 @@ nav.app__nav {
           &::after {
             transform: scale(0.5);
           }
+        }
+        svg {
+          margin: 5px 5px 0px 0px;
         }
       }
     }
