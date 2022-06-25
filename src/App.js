@@ -1,5 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import NavBar from "./components/navbar/navbar.jsx";
 import LogIn from "./containers/login/login.jsx";
 import SignUp from "./containers/signup/signup.jsx";
@@ -30,6 +32,7 @@ function App() {
         />
         <Route path="/add-task" element={user ? <AddTask /> : <LogIn />} />
       </Routes>
+      <ToastContainer />
     </>
   );
 }

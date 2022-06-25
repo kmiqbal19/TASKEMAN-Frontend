@@ -52,11 +52,12 @@ nav.app__nav {
     }
     // No User
     a {
+      padding: 1.5rem;
       text-decoration: none;
       position: relative;
       font-size: 1.3rem;
       color: black;
-      margin-right: 2rem;
+      margin-right: 3rem;
       &::after {
         content: "";
         position: absolute;
@@ -64,7 +65,7 @@ nav.app__nav {
         height: 22px;
         border-radius: 50%;
         background-color: black;
-        bottom: -2.25rem;
+        bottom: -0.75rem;
         left: 38%;
         transform: scale(0.5);
         transition: all 0.4s ease-out;
@@ -90,6 +91,7 @@ nav.app__nav {
       justify-content: center;
       align-items: center;
       a {
+        padding: 1.5rem;
         text-decoration: none;
         position: relative;
         font-size: 1.3rem;
@@ -102,7 +104,7 @@ nav.app__nav {
           height: 22px;
           border-radius: 50%;
           background-color: black;
-          bottom: -2.25rem;
+          bottom: -0.75rem;
           left: 38%;
           transform: scale(0.5);
           transition: all 0.4s ease-out;
@@ -120,14 +122,14 @@ nav.app__nav {
       }
       a.app__nav--menubar-user--link {
         text-decoration: none;
-        padding: 0rem;
+        padding: 1rem;
         margin-right: 0rem;
         display: flex;
         align-items: center;
         justify-content: center;
         border: none;
         &::after {
-          bottom: -1.25rem;
+          bottom: -0.25rem;
           left: 50%;
         }
         // &:hover {
@@ -148,6 +150,7 @@ nav.app__nav {
         }
       }
       li {
+        padding: 1.5rem;
         list-style: none;
         text-decoration: none;
         position: relative;
@@ -162,7 +165,7 @@ nav.app__nav {
           height: 22px;
           border-radius: 50%;
           background-color: black;
-          bottom: -2.25rem;
+          bottom: -0.75rem;
           left: 38%;
           transform: scale(0.5);
           transition: all 0.4s ease-out;

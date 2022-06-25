@@ -35,7 +35,7 @@ export const login = createAsyncThunk(
       if (response.data) {
         localStorage.setItem("userData", JSON.stringify(response.data.data));
       }
-      return response.data.data;
+      return await response.data.data;
     } catch (err) {
       const message = err.respose.data.message || err.toString();
       thunkAPI.rejectWithValue(message);
