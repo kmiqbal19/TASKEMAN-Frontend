@@ -51,6 +51,11 @@ nav.app__nav {
       z-index: -1;
     }
     // No User
+    a.activeNav {
+      &::after {
+        transform: scale(1);
+      }
+    }
     a {
       padding: 1.5rem;
       text-decoration: none;
@@ -97,6 +102,11 @@ nav.app__nav {
       display: flex;
       justify-content: center;
       align-items: center;
+      a.activeNav {
+        &::after {
+          transform: scale(1);
+        }
+      }
       a {
         padding: 1.5rem;
         text-decoration: none;

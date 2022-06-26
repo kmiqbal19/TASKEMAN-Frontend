@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { RiMenu3Fill } from "react-icons/ri";
 import { HiX } from "react-icons/hi";
 import { IoIosLogIn, IoIosLogOut } from "react-icons/io";
@@ -20,24 +20,37 @@ function NavBar() {
   return (
     <nav className="app__nav">
       <div className="app__nav--logo">
-        <Link to="/">
+        <NavLink to="/">
           <img src="https://i.ibb.co/ZHFdJhW/city.png" alt="nav-logo" />
-        </Link>
+        </NavLink>
       </div>
       {/* DESKTOP */}
       <ul className="app__nav--menubar">
         {user ? (
           <div className="app__nav--menubar-user">
-            <Link to="/tasks">
+            <NavLink
+              to="/tasks"
+              className={({ isActive }) => (isActive ? "activeNav" : undefined)}
+            >
               <BsListTask /> Tasks
-            </Link>
-            <Link to="/add-task">
+            </NavLink>
+            <NavLink
+              to="/add-task"
+              className={({ isActive }) => (isActive ? "activeNav" : undefined)}
+            >
               <AiOutlineFileAdd /> Add Task
-            </Link>
+            </NavLink>
             <li onClick={handleLogout}>
               <IoIosLogOut /> Log Out
             </li>
-            <Link className="app__nav--menubar-user--link" to="user-settings">
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? "app__nav--menubar-user--link activeNav"
+                  : "app__nav--menubar-user--link"
+              }
+              to="user-settings"
+            >
               <img
                 src={`http://localhost:5000/users/${user.photo}`}
                 alt="user"
@@ -46,16 +59,22 @@ function NavBar() {
                 {username.charAt(0).toUpperCase() +
                   username.slice(1).toLowerCase()}
               </span>
-            </Link>
+            </NavLink>
           </div>
         ) : (
           <>
-            <Link className="app__nav--menubar-item" to="/login">
+            <NavLink
+              className={({ isActive }) => (isActive ? "activeNav" : undefined)}
+              to="/login"
+            >
               <IoIosLogIn /> Login
-            </Link>
-            <Link className="app__nav--menubar-item" to="/signup">
+            </NavLink>
+            <NavLink
+              className={({ isActive }) => (isActive ? "activeNav" : undefined)}
+              to="/signup"
+            >
               <AiOutlineUserAdd /> Sign Up
-            </Link>
+            </NavLink>
           </>
         )}
       </ul>
@@ -69,37 +88,37 @@ function NavBar() {
             <ul>
               {user ? (
                 <div>
-                  <Link to="user-settings" onClick={() => setToggle(false)}>
+                  <NavLink to="user-settings" onClick={() => setToggle(false)}>
                     <img
                       src="https://i.ibb.co/fQMrMN1/286386589-562588748572129-2361478305613804820-n.jpg"
                       alt="user"
                     />
-                  </Link>
+                  </NavLink>
                   <span>User Name</span>
-                  <Link to="/" onClick={() => setToggle(false)}>
+                  <NavLink to="/" onClick={() => setToggle(false)}>
                     Home
-                  </Link>
-                  <Link to="/tasks" onClick={() => setToggle(false)}>
+                  </NavLink>
+                  <NavLink to="/tasks" onClick={() => setToggle(false)}>
                     Tasks
-                  </Link>
-                  <Link to="/" onClick={() => setToggle(false)}>
+                  </NavLink>
+                  <NavLink to="/" onClick={() => setToggle(false)}>
                     Add task
-                  </Link>
-                  <Link to="/" onClick={() => setToggle(false)}>
+                  </NavLink>
+                  <NavLink to="/" onClick={() => setToggle(false)}>
                     Log Out
-                  </Link>
+                  </NavLink>
                 </div>
               ) : (
                 <div>
-                  <Link to="/" onClick={() => setToggle(false)}>
+                  <NavLink to="/" onClick={() => setToggle(false)}>
                     Home
-                  </Link>
-                  <Link to="/login" onClick={() => setToggle(false)}>
+                  </NavLink>
+                  <NavLink to="/login" onClick={() => setToggle(false)}>
                     Login
-                  </Link>
-                  <Link to="/signup" onClick={() => setToggle(false)}>
+                  </NavLink>
+                  <NavLink to="/signup" onClick={() => setToggle(false)}>
                     SignUp
-                  </Link>
+                  </NavLink>
                 </div>
               )}
             </ul>
