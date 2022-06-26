@@ -96,7 +96,9 @@ export const taskSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
-      return initialState;
+      state.isSuccess = false;
+      state.isError = false;
+      state.isLoading = false;
     },
   },
   extraReducers: (builder) => {

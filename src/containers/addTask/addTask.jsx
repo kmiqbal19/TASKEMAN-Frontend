@@ -1,13 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./addTask.scss";
 import { BiImageAdd } from "react-icons/bi";
 import { useSelector, useDispatch } from "react-redux";
-import { createTask } from "../../features/task/taskSlice";
+import { createTask, reset } from "../../features/task/taskSlice";
+import { toast } from "react-toastify";
 function AddTask() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [file, setFile] = useState(null);
+  const [success, setSuccess] = useState(false);
+  const store = useSelector((store) => store.tasks);
+  const { isLoading, isError, isSuccess } = store;
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isError) {
+      toast.error("⚠️ Something went wrong!");
+      setSuccess(false);
+    }
+    if (success) {
+      window.location.replace("/tasks");
+    }
+    return () => {
+      dispatch(reset());
+      setSuccess(false);
+    };
+  }, [dispatch, isError, isSuccess, success]);
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -16,19 +34,23 @@ function AddTask() {
     data.append("description", description);
     data.append("photo", file);
     dispatch(createTask(data));
+    setTimeout(() => {
+      setSuccess(true);
+    }, 500);
   };
   return (
     <div className="app__add-task">
-      {file && file.type.startsWith("image") && (
+      {file && file.type.startsWith("image") ? (
+        <img src={URL.createObjectURL(file)} alt="task-img" />
+      ) : (
         <img
-          src={URL.createObjectURL(file)}
-          alt="task-img"
-          style={{ width: "200px", height: "220px" }}
+          src="https://i.ibb.co/vvZs571/Pngtree-image-upload-icon-photo-upload-5279794.png"
+          alt="add-img-task"
         />
       )}
       <form onSubmit={handleSubmit}>
         <label htmlFor="add-task__file">
-          <BiImageAdd />
+          <BiImageAdd /> Click to add an image...
         </label>
         <input
           id="add-task__file"
@@ -36,19 +58,21 @@ function AddTask() {
           style={{ display: "none" }}
           onChange={(e) => setFile(e.target.files[0])}
         />
-        <label>Add Task Name:</label>
+        <label>Add task title:</label>
         <input
           type="text"
           placeholder="Add your task title here.."
           onChange={(e) => setTitle(e.target.value)}
         />
-        <label>Add Task Description:</label>
+        <label>Add task description:</label>
         <textarea
           type="text"
-          placeholder="Add your task desctiption here.."
+          placeholder="Add your task description here.."
           onChange={(e) => setDescription(e.target.value)}
         />
-        <button type="submit">Add</button>
+        <button disabled={isLoading || !title || !description} type="submit">
+          {isLoading ? "Adding..." : "Add"}
+        </button>
       </form>
     </div>
   );
