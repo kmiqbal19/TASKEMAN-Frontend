@@ -1,0 +1,10 @@
+div.app__tasks--container {
+  width: 100vw;
+  height: 100%;
+  margin-top: 10rem;
+  display: flex;
+
+  flex-wrap: wrap;
+  gap: 8vw;
+  justify-content: center;
+}

@@ -59,7 +59,7 @@ export const deleteTask = createAsyncThunk(
           Authorization: `Bearer ${token}`,
         },
       };
-      const response = await axios.get(`/tasks/${taskId}`, config);
+      const response = await axios.delete(`/tasks/${taskId}`, config);
       return response.data.deletedTaskId;
     } catch (err) {
       const message = err.response.data.message || err.toString();

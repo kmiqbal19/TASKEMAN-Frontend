@@ -1,5 +1,6 @@
 nav.app__nav {
   display: flex;
+  background-color: white;
   width: 100%;
   height: 5rem;
   // background-color: rgba(0, 0, 0, 0.5);
@@ -9,6 +10,7 @@ nav.app__nav {
   position: fixed;
   left: 0;
   top: 0;
+  z-index: 5;
   div.app__nav--logo {
     display: flex;
     justify-content: center;
