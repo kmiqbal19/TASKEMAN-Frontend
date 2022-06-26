@@ -38,6 +38,7 @@ div.app__add-task {
         cursor: pointer;
         margin-right: 10px;
         transition: transform 0.3s ease-out;
+        color: rgb(12, 127, 12);
         &:hover {
           transform: scale(1.1);
         }
