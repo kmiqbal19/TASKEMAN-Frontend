@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./tasks.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { getTasks } from "../../features/task/taskSlice.js";
+import { getTasks, reset } from "../../features/task/taskSlice.js";
 import Task from "../../components/task/task.jsx";
 function Tasks() {
   const store = useSelector((store) => store.tasks);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getTasks());
+    return () => {
+      dispatch(reset());
+    };
   }, [dispatch]);
   return (
     <div className="app__tasks--container">

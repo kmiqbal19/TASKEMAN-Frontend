@@ -14,6 +14,7 @@ function AddTask() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log(isError);
     if (isError) {
       toast.error("⚠️ Something went wrong!");
       setSuccess(false);
