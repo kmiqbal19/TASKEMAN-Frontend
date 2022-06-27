@@ -9,7 +9,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { MdAddPhotoAlternate } from "react-icons/md";
 function SinglePageTask() {
   const [task, setTask] = useState({});
-  const [updateMode, setUpdateMode] = useState(true);
+  const [updateMode, setUpdateMode] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [file, setFile] = useState(null);
@@ -52,9 +52,26 @@ function SinglePageTask() {
       };
       const res = await axios.patch(`/tasks/${path}`, data, config);
       setTask(res.data.data.task);
-
+      window.location.reload();
       setUpdateMode(false);
     } catch (error) {}
+  };
+  const handleDelete = async () => {
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      await axios.delete(`/tasks/${path}`, config);
+
+      toast.error("💥 Item has been deleted!");
+      setTimeout(() => {
+        window.location.replace("/tasks");
+      }, 1500);
+    } catch (error) {
+      toast.error("⚠️ Couldn't delete.Something went wrong!");
+    }
   };
   return (
     <div className="app__single-task">
@@ -72,8 +89,12 @@ function SinglePageTask() {
       )}
       <form onSubmit={handleSubmit} className="single-task__description">
         <div className="single-task__description--edit-icons">
-          <FiEdit />
-          <AiOutlineDelete />
+          <span onClick={() => setUpdateMode(true)}>
+            <FiEdit /> Edit
+          </span>
+          <span onClick={handleDelete}>
+            <AiOutlineDelete /> Delete
+          </span>
         </div>
         {updateMode && (
           <>
@@ -110,10 +131,12 @@ function SinglePageTask() {
         ) : (
           <p>{task.taskDescription}</p>
         )}
-        <div className="single-task__description--buttons">
-          <button type="submit">Update</button>
-          <button>Cancel</button>
-        </div>
+        {updateMode && (
+          <div className="single-task__description--buttons">
+            <button type="submit">Update</button>
+            <button onClick={() => setUpdateMode(false)}>Cancel</button>
+          </div>
+        )}
       </form>
     </div>
   );
