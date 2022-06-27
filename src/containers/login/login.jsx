@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./login.scss";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login, reset } from "../../features/auth/authSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -67,6 +67,9 @@ function LogIn() {
             Wrong Credentials!
           </p>
         )}
+        <p style={{ marginTop: "1rem" }}>
+          Don't have account? <Link to="/signup">Sign up</Link>
+        </p>
       </form>
     </div>
   );

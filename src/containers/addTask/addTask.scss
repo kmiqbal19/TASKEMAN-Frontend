@@ -32,10 +32,10 @@ div.app__add-task {
       font-size: calc(0.7rem + 0.5vw);
       display: flex;
       align-items: center;
+      cursor: pointer;
       svg {
         width: 40px;
         height: 40px;
-        cursor: pointer;
         margin-right: 10px;
         transition: transform 0.3s ease-out;
         color: rgb(12, 127, 12);
@@ -76,7 +76,7 @@ div.app__add-task {
         background-color: rgb(57, 57, 57);
       }
       &:disabled {
-        background-color: red;
+        background-color: rgb(136, 35, 58);
         cursor: not-allowed;
       }
     }

@@ -14,13 +14,19 @@ nav.app__nav {
   div.app__nav--logo {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     width: 400px;
     height: 100%;
+    padding: 2rem;
     // border: 1px solid red;
     img {
       width: 80%;
       height: 90%;
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      margin-left: 1rem;
+      &:hover {
+        transform: scale(1.1);
+      }
     }
   }
   // MENU - DESKTOP

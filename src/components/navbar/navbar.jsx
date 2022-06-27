@@ -8,6 +8,7 @@ import { BsListTask } from "react-icons/bs";
 import "./navbar.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../features/auth/authSlice";
+import logo from "../../assets/TASKEMAN-logo.png";
 function NavBar() {
   const userData = useSelector((store) => store.auth.userData);
   const user = userData ? userData.user : null;
@@ -21,7 +22,7 @@ function NavBar() {
     <nav className="app__nav">
       <div className="app__nav--logo">
         <NavLink to="/">
-          <img src="https://i.ibb.co/ZHFdJhW/city.png" alt="nav-logo" />
+          <img src={logo} alt="nav-logo" />
         </NavLink>
       </div>
       {/* DESKTOP */}
