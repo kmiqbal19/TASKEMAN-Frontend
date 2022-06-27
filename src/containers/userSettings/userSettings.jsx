@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./userSettings.scss";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { updateUser, resetUser } from "../../features/auth/authSlice.js";
+import { updateUser } from "../../features/auth/authSlice.js";
+import { toast } from "react-toastify";
+import { BiImageAdd } from "react-icons/bi";
+import userSettings from "../../assets/user-settings.png";
 function UserSettings() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -25,15 +29,15 @@ function UserSettings() {
     }
 
     dispatch(updateUser(data));
-    window.location.reload();
+    toast.dark("✨ Your profile has been updated!");
+    setTimeout(() => {
+      window.location.replace("/");
+    }, 500);
   };
   return (
     <div className="app__user-settings">
       <div className="user-settings__img">
-        <img
-          src="https://i.ibb.co/vvZs571/Pngtree-image-upload-icon-photo-upload-5279794.png"
-          alt="user-setting-img"
-        />
+        <img src={userSettings} alt="user-setting-img" />
       </div>
       <form onSubmit={handleSubmit} className="user-settings__wrapper">
         <img
@@ -44,7 +48,9 @@ function UserSettings() {
           }
           alt="user-img"
         />
-        <label htmlFor="user-img-add">Add user image </label>
+        <label className="user-settings__label-img" htmlFor="user-img-add">
+          <BiImageAdd /> Add user image{" "}
+        </label>
         <input
           id="user-img-add"
           type="file"
@@ -64,6 +70,9 @@ function UserSettings() {
           onChange={(e) => setEmail(e.target.value)}
         />
         <button type="submit">{isLoading ? "Updating..." : "Update"}</button>
+        <Link to="/change-password" style={{ marginTop: "1rem" }}>
+          Change password
+        </Link>
       </form>
     </div>
   );

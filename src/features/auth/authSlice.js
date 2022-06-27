@@ -63,8 +63,8 @@ export const updateUser = createAsyncThunk(
         config
       );
       if (response.data) {
-        localStorage.removeItem("userData");
         const userData = { token, user: response.data.data.user };
+
         localStorage.setItem("userData", JSON.stringify(userData));
       }
 

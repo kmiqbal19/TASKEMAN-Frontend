@@ -11,6 +11,7 @@ import UserSettings from "./containers/userSettings/userSettings.jsx";
 import Tasks from "./containers/tasks/tasks.jsx";
 import AddTask from "./containers/addTask/addTask.jsx";
 import SinglePageTask from "./containers/singlePageTask/singlePageTask.jsx";
+import ChangePassword from "./containers/changePassword/changePassword.jsx";
 function App() {
   const userData = useSelector((store) => store.auth.userData);
   const user = userData ? userData.user : null;
@@ -24,6 +25,10 @@ function App() {
         <Route
           path="/user-settings"
           element={user ? <UserSettings /> : <LogIn />}
+        />
+        <Route
+          path="/change-password"
+          element={user ? <ChangePassword /> : <LogIn />}
         />
         <Route path="/tasks" element={user ? <Tasks /> : <LogIn />} />
         <Route
