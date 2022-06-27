@@ -9,6 +9,7 @@ import "./navbar.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../features/auth/authSlice";
 import logo from "../../assets/TASKEMAN-logo.png";
+import { toast } from "react-toastify";
 function NavBar() {
   const userData = useSelector((store) => store.auth.userData);
   const user = userData ? userData.user : null;
@@ -17,6 +18,10 @@ function NavBar() {
   const [toggle, setToggle] = useState(false);
   const handleLogout = () => {
     dispatch(logout());
+    toast.dark("⚠️ You have been logged out! ");
+    setTimeout(() => {
+      window.location.replace("/");
+    }, 1200);
   };
   return (
     <nav className="app__nav">

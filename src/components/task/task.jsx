@@ -10,7 +10,7 @@ function Task({ task }) {
   const dispatch = useDispatch();
   const handleDelete = () => {
     dispatch(deleteTask(task._id));
-    toast.error("💥This task has been deleted!");
+    toast.dark("💥This task has been deleted!");
   };
   const navigate = useNavigate();
   return (
@@ -27,7 +27,6 @@ function Task({ task }) {
         </div>
 
         <div className="task__desc">
-          {/* <MdOutlineCancel onClick={handleDelete} title="Delete this task 🗑️" /> */}
           <p>{`${new Date(task.createdAt).toLocaleString("en-US")}`}</p>
           <p>{task.taskTitle}</p>
           <p>{task.taskDescription}</p>

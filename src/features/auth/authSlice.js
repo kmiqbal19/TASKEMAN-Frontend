@@ -62,7 +62,12 @@ export const updateUser = createAsyncThunk(
         updateData,
         config
       );
-      console.log(response);
+      if (response.data) {
+        localStorage.removeItem("userData");
+        const userData = { token, user: response.data.data.user };
+        localStorage.setItem("userData", JSON.stringify(userData));
+      }
+
       return response.data.data.user;
     } catch (err) {
       const message = err.response.data.message || err.toString();
@@ -107,6 +112,9 @@ export const authSlice = createSlice({
       state.isError = false;
       state.message = "";
     },
+    resetUser: (state) => {
+      state.userData.user = {};
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -150,6 +158,7 @@ export const authSlice = createSlice({
       })
       .addCase(updateUser.pending, (state) => {
         state.isLoading = true;
+        state.userData.user = {};
       })
       .addCase(updateUser.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -181,5 +190,5 @@ export const authSlice = createSlice({
   },
 });
 
-export const { reset } = authSlice.actions;
+export const { reset, resetUser } = authSlice.actions;
 export default authSlice.reducer;
