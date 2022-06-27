@@ -43,7 +43,9 @@ function SinglePageTask() {
     const data = new FormData();
     data.append("taskTitle", title);
     data.append("taskDescription", description);
-    data.append("photo", file);
+    if (file) {
+      data.append("photo", file);
+    }
     try {
       const config = {
         headers: {

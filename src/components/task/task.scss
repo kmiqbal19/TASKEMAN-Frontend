@@ -1,64 +1,87 @@
-a.task__link {
-  text-decoration: none;
-  color: black;
+div.task--container-main {
   width: 40%;
   height: calc(200px + 5vh);
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
   &:hover {
     transform: scale(1.08);
   }
-}
-div.task--container {
-  height: 100%;
-  box-shadow: 2px 2px 10px rgb(118, 95, 95);
-  border-radius: 1rem;
-  display: flex;
-  background-color: white;
-  div.task__img {
-    width: 40%;
-    height: 100%;
-    padding: 1rem;
-    // margin: 1rem;
+  svg {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
 
-    img {
-      border-radius: 0.5rem;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: grayscale(0.8);
-      transition: filter 0.5s ease-in-out;
-      &:hover {
-        filter: none;
-      }
+    width: 30px;
+    height: 30px;
+    color: rgb(213, 44, 98);
+    cursor: pointer;
+
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    &:hover {
+      transform: scale(1.2);
     }
   }
-  div.task__desc {
-    padding: 1.5rem 2rem;
 
-    width: 60%;
+  div.task--container {
+    width: 100%;
+    height: 100%;
+    box-shadow: 2px 2px 10px rgb(118, 95, 95);
+    border-radius: 1rem;
+    display: flex;
+    background-color: white;
 
-    svg {
-      float: right;
-      width: 30px;
-      height: 30px;
-      color: rgb(213, 44, 98);
-      cursor: pointer;
+    div.task__img {
+      width: 40%;
+      height: 100%;
+      padding: 1rem;
+      // margin: 1rem;
+
+      img {
+        border-radius: 0.5rem;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(0.8);
+        transition: filter 0.5s ease-in-out;
+        &:hover {
+          filter: none;
+        }
+      }
     }
-    p:nth-child(3) {
-      font-size: 2rem;
-      margin: 1rem 0rem;
-      display: -webkit-box;
-      -webkit-line-clamp: 1;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      -webkit-box-orient: vertical;
-    }
-    p:nth-child(4) {
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      -webkit-box-orient: vertical;
+    div.task__desc {
+      padding: 1.5rem 2rem;
+
+      width: 60%;
+
+      svg {
+        float: right;
+        width: 30px;
+        height: 30px;
+        color: rgb(213, 44, 98);
+        cursor: pointer;
+
+        transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
+      p:nth-child(3) {
+        font-size: 2rem;
+        margin: 1rem 0rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+      }
+      p:nth-child(4) {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+      }
     }
   }
 }

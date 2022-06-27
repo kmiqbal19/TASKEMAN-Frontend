@@ -19,7 +19,10 @@ function AddTask() {
       setSuccess(false);
     }
     if (success) {
-      window.location.replace("/tasks");
+      toast.dark("✨💖 Your task has been added. 🎉");
+      setTimeout(() => {
+        window.location.replace("/tasks");
+      }, 1500);
     }
     return () => {
       dispatch(reset());
@@ -70,7 +73,10 @@ function AddTask() {
           placeholder="Add your task description here.."
           onChange={(e) => setDescription(e.target.value)}
         />
-        <button disabled={isLoading || !title || !description} type="submit">
+        <button
+          disabled={isLoading || !title || !description || success}
+          type="submit"
+        >
           {isLoading ? "Adding..." : "Add"}
         </button>
       </form>
