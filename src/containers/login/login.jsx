@@ -18,8 +18,9 @@ function LogIn() {
     if (isError) {
       toast.error("Wrong Data! ⚠️");
     }
-
-    dispatch(reset());
+    return () => {
+      dispatch(reset());
+    };
   }, [dispatch, isError]);
   const handleSubmit = async (e) => {
     e.preventDefault();

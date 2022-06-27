@@ -28,7 +28,7 @@ function App() {
         />
         <Route
           path="/change-password"
-          element={user ? <ChangePassword /> : <LogIn />}
+          element={user ? <ChangePassword /> : <Home />}
         />
         <Route path="/tasks" element={user ? <Tasks /> : <LogIn />} />
         <Route

@@ -10,7 +10,7 @@ function Task({ task }) {
   const dispatch = useDispatch();
   const handleDelete = () => {
     dispatch(deleteTask(task._id));
-    toast.dark("💥This task has been deleted!");
+    toast.dark("🗑️ This task has been  deleted! 🚮");
   };
   const navigate = useNavigate();
   return (

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./changePassword.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { reset, updatePassword } from "../../features/auth/authSlice";
+import { logout, reset, updatePassword } from "../../features/auth/authSlice";
 import { toast } from "react-toastify";
 import changePasswordImg from "../../assets/change-password.png";
 import passImg from "../../assets/pass.png";
@@ -13,10 +13,12 @@ function ChangePassword() {
   const { isLoading, isSuccess, isError } = useSelector((store) => store.auth);
   useEffect(() => {
     if (isSuccess) {
-      toast("Password changed successfully!");
+      toast.dark("✨🎉Password changed successfully!🎉");
+      toast("⚠️ Please login again!");
       setTimeout(() => {
-        window.location.replace("/");
-      }, 1200);
+        dispatch(logout());
+        // window.location.replace("/");
+      }, 2000);
     }
     if (isError) {
       toast.error("⚠️ Something went wrong!");

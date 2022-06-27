@@ -4,6 +4,7 @@ import { BiImageAdd } from "react-icons/bi";
 import { useSelector, useDispatch } from "react-redux";
 import { createTask, reset } from "../../features/task/taskSlice";
 import { toast } from "react-toastify";
+import addImage from "../../assets/add-img.png";
 function AddTask() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -47,10 +48,7 @@ function AddTask() {
       {file && file.type.startsWith("image") ? (
         <img src={URL.createObjectURL(file)} alt="task-img" />
       ) : (
-        <img
-          src="https://i.ibb.co/vvZs571/Pngtree-image-upload-icon-photo-upload-5279794.png"
-          alt="add-img-task"
-        />
+        <img src={addImage} alt="add-img-task" />
       )}
       <form onSubmit={handleSubmit}>
         <label htmlFor="add-task__file">

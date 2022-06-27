@@ -67,7 +67,7 @@ function SinglePageTask() {
       };
       await axios.delete(`/tasks/${path}`, config);
 
-      toast.error("💥 Item has been deleted!");
+      toast.error("🚮 Item has been deleted!");
       setTimeout(() => {
         window.location.replace("/tasks");
       }, 1500);
