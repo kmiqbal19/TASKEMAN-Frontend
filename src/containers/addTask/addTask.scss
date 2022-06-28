@@ -5,6 +5,12 @@ div.app__add-task {
 
   align-items: center;
   justify-content: space-around;
+  @media screen and(max-width: 850px) {
+    margin-top: 10rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
   img {
     width: 40%;
     height: 60vh;
@@ -13,6 +19,19 @@ div.app__add-task {
     border-radius: 1rem;
     filter: grayscale(0.9);
     transition: all 0.3s ease-in-out;
+    @media screen and (min-width: 2000px) {
+      border-radius: 2rem;
+    }
+    @media screen and (max-width: 1200px) {
+      margin: 0rem 2rem;
+    }
+    @media screen and(max-width: 850px) {
+      width: 70%;
+      height: 50vh;
+    }
+    @media screen and(max-width: 650px) {
+      width: 80%;
+    }
     &:hover {
       filter: none;
       transform: scale(1.005);
@@ -24,15 +43,33 @@ div.app__add-task {
     margin: 8rem 5rem;
     display: flex;
     flex-direction: column;
-
-    // border: 1px solid red;
     padding: 3rem;
+    @media screen and (min-width: 2000px) {
+      width: 30%;
+    }
+    @media screen and (max-width: 1400px) {
+      margin: 8rem 1rem;
+      padding: 3rem 1rem;
+    }
+    @media screen and(max-width: 850px) {
+      margin: 0rem;
+      width: 60%;
+    }
+    @media screen and(max-width: 650px) {
+      width: 70%;
+    }
+    @media screen and(max-width: 450px) {
+      width: 80%;
+    }
     label {
       margin: 1rem 0rem;
       font-size: calc(0.7rem + 0.5vw);
       display: flex;
       align-items: center;
       cursor: pointer;
+      @media screen and (min-width: 2000px) {
+        margin: 1.5rem 0rem;
+      }
       svg {
         width: 40px;
         height: 40px;
@@ -52,6 +89,9 @@ div.app__add-task {
       &:focus {
         outline: 3px solid black;
       }
+      @media screen and (min-width: 2000px) {
+        padding: 1rem 1.5rem;
+      }
     }
     textarea {
       height: 160px;
@@ -63,6 +103,9 @@ div.app__add-task {
       &:focus {
         outline: 3px solid black;
       }
+      @media screen and (min-width: 2000px) {
+        padding: 1.5rem;
+      }
     }
     button {
       padding: 0.7rem 1rem;
@@ -72,6 +115,10 @@ div.app__add-task {
       background-color: black;
       font-size: calc(0.6rem + 0.5vw);
       cursor: pointer;
+      @media screen and (min-width: 2000px) {
+        padding: 1rem 1.5rem;
+        margin: 3rem 0rem;
+      }
       &:hover {
         background-color: rgb(57, 57, 57);
       }
