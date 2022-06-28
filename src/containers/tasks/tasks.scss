@@ -7,9 +7,9 @@ div.app__tasks--container {
   flex-wrap: wrap;
   gap: 5vw;
   justify-content: center;
-  // @media screen and(min-width: 2000px) {
-  //   gap: 5vw;
-  // }
+  @media screen and(min-width: 2000px) {
+    margin-top: calc(10rem + 5vh);
+  }
   // @media screen and (max-width: 800px) {
   //   gap: 5vw;
   // }

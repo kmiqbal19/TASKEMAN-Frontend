@@ -122,6 +122,9 @@ nav.app__nav {
         font-size: 1.3rem;
         color: black;
         margin-right: 5rem;
+        @media screen and (max-width: 1250px) {
+          margin-right: 0.5rem;
+        }
         &::after {
           content: "";
           position: absolute;
@@ -157,11 +160,7 @@ nav.app__nav {
           bottom: -0.25rem;
           left: 50%;
         }
-        // &:hover {
-        //   img {
-        //     transform: scale(0.95);
-        //   }
-        // }
+
         img {
           width: 45px;
           height: 45px;
@@ -185,6 +184,9 @@ nav.app__nav {
         color: black;
         margin-right: 2rem;
         cursor: pointer;
+        @media screen and (max-width: 1250px) {
+          margin-right: 1rem;
+        }
         &::after {
           content: "";
           position: absolute;
