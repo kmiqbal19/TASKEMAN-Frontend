@@ -16,15 +16,33 @@ div.app__home {
   }
   p.app__home-msg {
     margin: 5rem auto;
-    font-size: calc(2rem + 1vw);
+    font-size: calc(1.5rem + 1vw);
+    // background-color: rgba(236, 236, 238, 0.606);
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
     span {
       color: navy;
       font-weight: bold;
       cursor: pointer;
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       &:hover {
-        font-size: calc(3rem + 1vw);
+        text-decoration: underline;
+        letter-spacing: 2px;
       }
+    }
+  }
+  footer {
+    height: 3rem;
+    background-color: rgb(8, 8, 57);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+      font-size: 1rem;
+      color: white;
+      text-align: center;
     }
   }
 }
