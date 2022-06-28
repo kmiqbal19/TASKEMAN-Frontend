@@ -4,6 +4,19 @@ div.task--container-main {
   position: relative;
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
+  @media screen and(min-width: 2000px) {
+    height: calc(200px + 10vh);
+  }
+  @media screen and(max-width: 1200px) {
+    height: calc(300px + 20vh);
+  }
+  @media screen and(max-width: 650px) {
+    width: 70%;
+    margin-bottom: 2rem;
+  }
+  @media screen and(max-width: 450px) {
+    width: 80%;
+  }
   &:hover {
     transform: scale(1.08);
   }
@@ -18,6 +31,30 @@ div.task--container-main {
     cursor: pointer;
 
     transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    @media screen and (min-width: 1900px) {
+      width: 40px;
+      height: 40px;
+      top: 15px;
+      right: 15px;
+    }
+    @media screen and (max-width: 1200px) {
+      width: 40px;
+      height: 40px;
+      top: 10px;
+      right: 15px;
+    }
+    @media screen and (max-width: 900px) {
+      width: 30px;
+      height: 30px;
+      top: 12px;
+      right: 12px;
+    }
+    // @media screen and(max-width: 650px) {
+    //   width: 40px;
+    //   height: 40px;
+    //   top: 10px;
+    //   right: 15px;
+    // }
     &:hover {
       transform: scale(1.2);
     }
@@ -30,13 +67,18 @@ div.task--container-main {
     border-radius: 1rem;
     display: flex;
     background-color: white;
-
+    @media screen and (max-width: 1200px) {
+      flex-direction: column;
+    }
     div.task__img {
       width: 40%;
       height: 100%;
       padding: 1rem;
-      // margin: 1rem;
 
+      @media screen and (max-width: 1200px) {
+        width: 88%;
+        height: 50%;
+      }
       img {
         border-radius: 0.5rem;
         width: 100%;
@@ -51,9 +93,14 @@ div.task--container-main {
     }
     div.task__desc {
       padding: 1.5rem 2rem;
-
+      margin-top: 1rem;
       width: 60%;
-
+      @media screen and (max-width: 1200px) {
+        margin-top: 0rem;
+        padding: 1rem 1.5rem;
+        width: 100%;
+        height: 50%;
+      }
       svg {
         float: right;
         width: 30px;
@@ -66,7 +113,7 @@ div.task--container-main {
           transform: scale(1.2);
         }
       }
-      p:nth-child(3) {
+      p:nth-child(2) {
         font-size: 2rem;
         margin: 1rem 0rem;
         display: -webkit-box;
@@ -74,13 +121,19 @@ div.task--container-main {
         text-overflow: ellipsis;
         overflow: hidden;
         -webkit-box-orient: vertical;
+        @media screen and(min-width: 2000px) {
+          font-size: calc(2rem + 0.5vw);
+        }
       }
-      p:nth-child(4) {
+      p:nth-child(3) {
         display: -webkit-box;
         -webkit-line-clamp: 3;
         text-overflow: ellipsis;
         overflow: hidden;
         -webkit-box-orient: vertical;
+        @media screen and(min-width: 2000px) {
+          font-size: calc(0.8rem + 0.5vw);
+        }
       }
     }
   }

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import BtnSlider from "./btnSlider";
 import slideData from "./slideData";
-import { motion } from "framer-motion";
 import "./slider.scss";
 function Slider() {
   const [slideIndex, setSlideIndex] = useState(1);

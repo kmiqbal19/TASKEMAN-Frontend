@@ -5,21 +5,30 @@ div.app__tasks--container {
   display: flex;
 
   flex-wrap: wrap;
-  gap: 8vw;
+  gap: 5vw;
   justify-content: center;
+  // @media screen and(min-width: 2000px) {
+  //   gap: 5vw;
+  // }
+  // @media screen and (max-width: 800px) {
+  //   gap: 5vw;
+  // }
   div.app__tasks-none {
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin-top: calc(2rem + 2vh);
     svg {
       width: calc(4rem + 1vw);
       height: calc(4rem + 1vw);
       color: rgba(58, 58, 115, 0.453);
     }
     p {
-      font-size: 2rem;
+      font-size: calc(1.5rem + 1vw);
       margin-top: 3rem;
       color: rgba(58, 58, 115, 0.653);
+      text-align: center;
+      padding: 0.5rem 2rem;
     }
   }
 }
