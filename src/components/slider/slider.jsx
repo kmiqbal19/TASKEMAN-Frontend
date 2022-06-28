@@ -35,7 +35,7 @@ function Slider() {
     const slideAuto = setInterval(() => {
       // console.log(slideIndex);
       setSlideIndex(slideIndex + 1);
-    }, 2500);
+    }, 3000);
     return () => {
       clearInterval(slideAuto);
     };
