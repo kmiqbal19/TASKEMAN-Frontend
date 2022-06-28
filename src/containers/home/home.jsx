@@ -13,7 +13,7 @@ function Home() {
         {user ? (
           <span>
             Hi{" "}
-            <span style={{ color: "navy" }}>{`${
+            <span style={{ color: "#4169e1" }}>{`${
               user.name.charAt(0).toUpperCase() + user.name.slice(1)
             }`}</span>{" "}
             ,{" "}

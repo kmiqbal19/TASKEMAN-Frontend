@@ -19,9 +19,10 @@ function NavBar() {
   const handleLogout = () => {
     dispatch(logout());
     toast.dark("⚠️ You have been logged out! ");
-    setTimeout(() => {
-      window.location.replace("/");
-    }, 1200);
+    setToggle(false);
+    // setTimeout(() => {
+    //   window.location.replace("/");
+    // }, 1200);
   };
   return (
     <nav className="app__nav">
@@ -96,21 +97,21 @@ function NavBar() {
                 <div>
                   <NavLink to="user-settings" onClick={() => setToggle(false)}>
                     <img
-                      src="https://i.ibb.co/fQMrMN1/286386589-562588748572129-2361478305613804820-n.jpg"
+                      src={`http://localhost:5000/users/${user.photo}`}
                       alt="user"
                     />
                   </NavLink>
-                  <span>User Name</span>
+                  <span>{user.name}</span>
                   <NavLink to="/" onClick={() => setToggle(false)}>
                     Home
                   </NavLink>
                   <NavLink to="/tasks" onClick={() => setToggle(false)}>
                     Tasks
                   </NavLink>
-                  <NavLink to="/" onClick={() => setToggle(false)}>
+                  <NavLink to="/add-task" onClick={() => setToggle(false)}>
                     Add task
                   </NavLink>
-                  <NavLink to="/" onClick={() => setToggle(false)}>
+                  <NavLink to="/" onClick={handleLogout}>
                     Log Out
                   </NavLink>
                 </div>

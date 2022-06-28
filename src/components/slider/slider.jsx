@@ -24,22 +24,22 @@ function Slider() {
     setSlideIndex(index);
   };
   // Automate Slide
-  // useEffect(() => {
-  //   if (slideIndex < 1) {
-  //     setSlideIndex(slideData.length);
-  //   } else if (slideIndex >= slideData.length) {
-  //     setSlideIndex(1);
-  //   }
-  // }, [slideIndex]);
-  // useEffect(() => {
-  //   const slideAuto = setInterval(() => {
-  //     // console.log(slideIndex);
-  //     setSlideIndex(slideIndex + 1);
-  //   }, 10000);
-  //   return () => {
-  //     clearInterval(slideAuto);
-  //   };
-  // }, [slideIndex]);
+  useEffect(() => {
+    if (slideIndex < 1) {
+      setSlideIndex(slideData.length);
+    } else if (slideIndex >= slideData.length) {
+      setSlideIndex(1);
+    }
+  }, [slideIndex]);
+  useEffect(() => {
+    const slideAuto = setInterval(() => {
+      // console.log(slideIndex);
+      setSlideIndex(slideIndex + 1);
+    }, 2500);
+    return () => {
+      clearInterval(slideAuto);
+    };
+  }, [slideIndex]);
   return (
     <div className="slider__container">
       {slideData.map((item, index) => {

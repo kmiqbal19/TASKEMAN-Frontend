@@ -7,4 +7,19 @@ div.app__tasks--container {
   flex-wrap: wrap;
   gap: 8vw;
   justify-content: center;
+  div.app__tasks-none {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    svg {
+      width: calc(4rem + 1vw);
+      height: calc(4rem + 1vw);
+      color: rgba(58, 58, 115, 0.453);
+    }
+    p {
+      font-size: 2rem;
+      margin-top: 3rem;
+      color: rgba(58, 58, 115, 0.653);
+    }
+  }
 }
