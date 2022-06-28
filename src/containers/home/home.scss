@@ -1,6 +1,30 @@
-div.app__home{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
+div.app__home {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  h1 {
+    font-size: calc(3rem + 1vw);
+    margin-top: 5rem;
+  }
+  p {
+    font-size: calc(1rem + 0.5vw);
+    margin: 1rem;
+  }
+  p.app__home-msg {
+    margin: 5rem auto;
+    font-size: calc(2rem + 1vw);
+    span {
+      color: navy;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      &:hover {
+        font-size: calc(3rem + 1vw);
+      }
     }
+  }
+}
