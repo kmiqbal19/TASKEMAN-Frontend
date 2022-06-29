@@ -10,9 +10,9 @@ div.app__tasks--container {
   @media screen and(min-width: 2000px) {
     margin-top: calc(10rem + 5vh);
   }
-  // @media screen and (max-width: 800px) {
-  //   gap: 5vw;
-  // }
+  @media screen and (max-width: 800px) {
+    margin-top: 6rem;
+  }
   div.app__tasks-none {
     display: flex;
     align-items: center;
