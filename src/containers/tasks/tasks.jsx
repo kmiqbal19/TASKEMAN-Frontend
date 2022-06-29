@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import "./tasks.scss";
+import Spinner from "../../components/spinner/spinner";
 import { useSelector, useDispatch } from "react-redux";
 import { getTasks, reset } from "../../features/task/taskSlice.js";
 import Task from "../../components/task/task.jsx";
@@ -23,7 +24,7 @@ function Tasks() {
       transition={{ ease: "easeInOut" }}
       className="app__tasks--container"
     >
-      {isLoading && <h1>Loading...</h1>}
+      {isLoading && <Spinner />}
       {!isLoading && store.tasks.length === 0 && (
         <div className="app__tasks-none">
           <ImSad />

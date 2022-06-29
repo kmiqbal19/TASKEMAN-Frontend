@@ -1,41 +1,68 @@
 import React, { useEffect, useState } from "react";
 import "./addTask.scss";
 import { BiImageAdd } from "react-icons/bi";
-import { useSelector, useDispatch } from "react-redux";
-import { createTask, reset } from "../../features/task/taskSlice";
+import { useSelector } from "react-redux";
+
 import { toast } from "react-toastify";
 import addImage from "../../assets/add-img.png";
 import { motion } from "framer-motion";
+import axiosInstance from "../../axiosConfig";
+import Spinner from "../../components/spinner/spinner.js";
 function AddTask() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [file, setFile] = useState(null);
-  const store = useSelector((store) => store.tasks);
-  const { isLoading, isError, Success } = store;
-  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
+
+  const userData = useSelector((store) => store.auth.userData);
 
   useEffect(() => {
-    if (isError) {
-      toast.error("⚠️ Something went wrong!");
-    }
-    if (Success) {
-      toast.dark("✨💖 Your task has been added. 🎉");
+    if (error) {
+      toast.error("⚠️🥵 Something went wrong!");
+    } else if (success) {
+      toast.dark("✨🎉 Your task has been added!");
       setTimeout(() => {
         window.location.replace("/tasks");
       }, 1500);
     }
-    return () => {
-      return dispatch(reset());
-    };
-  }, [Success, dispatch, isError]);
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
+    return () => {
+      setSuccess(false);
+      setLoading(false);
+      setError(false);
+    };
+  }, [error, success]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
     const data = new FormData();
     data.append("title", title);
     data.append("description", description);
-    data.append("photo", file);
-    dispatch(createTask(data));
+    if (file) {
+      data.append("photo", file);
+    }
+    // dispatch(createTask(data));
+    const token = userData.token;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    try {
+      const res = await axiosInstance.post("/tasks", data, config);
+      if (res) {
+        setLoading(false);
+        setSuccess(true);
+      }
+    } catch (err) {
+      console.log(err);
+      setError(true);
+      setLoading(false);
+      setSuccess(false);
+    }
   };
   return (
     <motion.div
@@ -43,6 +70,7 @@ function AddTask() {
       transition={{ ease: "easeOut" }}
       className="app__add-task"
     >
+      {loading && <Spinner />}
       {file && file.type.startsWith("image") ? (
         <img src={URL.createObjectURL(file)} alt="task-img" />
       ) : (
@@ -75,10 +103,10 @@ function AddTask() {
           onChange={(e) => setDescription(e.target.value)}
         />
         <button
-          disabled={isLoading || !title || !description || Success}
+          disabled={loading || !title || !description || success}
           type="submit"
         >
-          {isLoading ? "Adding..." : "Add"}
+          {loading ? "Adding..." : "Add"}
         </button>
       </motion.form>
     </motion.div>

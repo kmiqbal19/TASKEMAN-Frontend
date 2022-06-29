@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { BiImageAdd } from "react-icons/bi";
 import userSettings from "../../assets/user-settings.png";
 import { motion } from "framer-motion";
+import Spinner from "../../components/spinner/spinner";
 function UserSettings() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -48,6 +49,7 @@ function UserSettings() {
       transition={{ ease: "easeOut" }}
       className="app__user-settings"
     >
+      {isLoading && <Spinner />}
       <div className="user-settings__img">
         <img src={userSettings} alt="user-setting-img" />
       </div>
@@ -86,7 +88,9 @@ function UserSettings() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <button type="submit">{isLoading ? "Updating..." : "Update"}</button>
+        <button type="submit" disabled={isSuccess}>
+          {isLoading ? "Updating..." : "Update"}
+        </button>
         <Link to="/change-password" style={{ marginTop: "1rem" }}>
           Change password
         </Link>

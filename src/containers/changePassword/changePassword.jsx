@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import changePasswordImg from "../../assets/change-password.png";
 import passImg from "../../assets/pass.png";
 import { motion } from "framer-motion";
+import Spinner from "../../components/spinner/spinner";
 function ChangePassword() {
   const [currentPassword, setCurrentPassword] = useState("");
   const [password, setPassword] = useState("");
@@ -42,6 +43,7 @@ function ChangePassword() {
       transition={{ ease: "easeInOut" }}
       className="app__change-password"
     >
+      {isLoading && <Spinner />}
       <div className="app__change-password--img">
         <img src={changePasswordImg} alt="change-password-img" />
       </div>

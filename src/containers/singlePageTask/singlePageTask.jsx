@@ -9,10 +9,12 @@ import { FiEdit } from "react-icons/fi";
 import { AiOutlineDelete } from "react-icons/ai";
 import { MdAddPhotoAlternate } from "react-icons/md";
 import defaultPic from "../../assets/add-img.png";
+import Spinner from "../../components/spinner/spinner";
 
 function SinglePageTask() {
   const [task, setTask] = useState({});
   const [shouldFetch, setShouldFetch] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [updateMode, setUpdateMode] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -48,6 +50,7 @@ function SinglePageTask() {
   }, [path, shouldFetch, token]);
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const data = new FormData();
     data.append("taskTitle", title);
     data.append("taskDescription", description);
@@ -61,10 +64,16 @@ function SinglePageTask() {
         },
       };
       const res = await axiosInstance.patch(`/tasks/${path}`, data, config);
-      setTask(res.data.data.task);
-      window.location.reload();
-      setUpdateMode(false);
-    } catch (error) {}
+      if (res) {
+        setTask(res.data.data.task);
+        setUpdateMode(false);
+        setLoading(false);
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong! ⚠️");
+    }
   };
   const handleDelete = async () => {
     try {
@@ -85,15 +94,15 @@ function SinglePageTask() {
   };
   return (
     <div className="app__single-task">
-      {!updateMode && task.photo ? (
+      {loading && <Spinner />}
+      {!task.photo && <img src={defaultPic} alt="default-pic" />}
+      {!updateMode && task.photo && (
         <img
           src={`https://add-task-backend.herokuapp.com/tasks/${task.photo}`}
           alt="task-img"
         />
-      ) : (
-        <img src={defaultPic} alt="default-pic" />
       )}
-      {updateMode && !file && (
+      {updateMode && !file && task.photo && (
         <img
           src={`https://add-task-backend.herokuapp.com/tasks/${task.photo}`}
           alt="task-img"
@@ -151,7 +160,9 @@ function SinglePageTask() {
         )}
         {updateMode && (
           <div className="single-task__description--buttons">
-            <button type="submit">Update</button>
+            <button type="submit" disabled={loading}>
+              {loading ? "Updating..." : "Update"}
+            </button>
             <button onClick={() => setUpdateMode(false)}>Cancel</button>
           </div>
         )}

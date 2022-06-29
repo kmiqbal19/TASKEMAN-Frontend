@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
+import Spinner from "../../components/spinner/spinner";
 function SignUp() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -38,6 +39,7 @@ function SignUp() {
       transition={{ ease: "easeOut" }}
       className="app__signup"
     >
+      {isLoading && <Spinner />}
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <label>Name</label>

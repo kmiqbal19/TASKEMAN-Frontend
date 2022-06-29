@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
+import Spinner from "../../components/spinner/spinner";
 function LogIn() {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -40,6 +41,7 @@ function LogIn() {
       transition={{ ease: "easeOut" }}
       className="app__login"
     >
+      {isLoading && <Spinner />}
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         <label>Email</label>

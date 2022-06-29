@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../features/auth/authSlice";
 import logo from "../../assets/TASKEMAN-logo.png";
 import { toast } from "react-toastify";
+import defaultAvatar from "../../assets/defaultAvatar.jpg";
 function NavBar() {
   const userData = useSelector((store) => store.auth.userData);
   const user = userData ? userData.user : null;
@@ -60,10 +61,14 @@ function NavBar() {
               }
               to="user-settings"
             >
-              <img
-                src={`https://add-task-backend.herokuapp.com/users/${user.photo}`}
-                alt="user"
-              />
+              {user.photo ? (
+                <img
+                  src={`https://add-task-backend.herokuapp.com/users/${user.photo}`}
+                  alt="user"
+                />
+              ) : (
+                <img src={defaultAvatar} alt="user" />
+              )}
               <span>
                 {user.name
                   ? user.name.charAt(0).toUpperCase() + user.name.slice(1, 7)
