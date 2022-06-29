@@ -3,13 +3,35 @@ import Slider from "../../components/slider/slider";
 import "./home.scss";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { motion } from "framer-motion";
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      // delay: 1.5,
+      duration: 0.5,
+    },
+  },
+  exit: {
+    x: "-100vw",
+    transition: {
+      ease: "easeInOut",
+    },
+  },
+};
 function Home() {
   const navigate = useNavigate();
   const userData = useSelector((store) => store.auth.userData);
   const user = userData?.user;
   return (
-    <div className="app__home">
-      <h1>
+    <motion.div variants={containerVariants} exit="exit" className="app__home">
+      <motion.h1
+        animate={{ y: [-100, 0], opacity: [0, 1] }}
+        transition={{ ease: "easeOut", duration: 1, delay: 0.3 }}
+      >
         {user ? (
           <span>
             Hi{" "}
@@ -22,20 +44,33 @@ function Home() {
           ""
         )}
         Welcome to TASKEMAN!
-      </h1>
-      <p>Now you will never forget your tasks! 😎</p>
+      </motion.h1>
+      <motion.p
+        animate={{ scale: [2, 1], opacity: [0, 1] }}
+        transition={{ ease: "easeInOut", duration: 1, delay: 1 }}
+      >
+        Now you will never forget your tasks! 😎
+      </motion.p>
       <Slider />
       {user ? (
-        <p className="app__home-msg">
+        <motion.p
+          whileInView={{ opacity: [0, 1], y: [100, 0] }}
+          transition={{ ease: "easeInOut", duration: 1 }}
+          className="app__home-msg"
+        >
           Go to your <span onClick={() => navigate("/tasks")}>Tasks</span>, and{" "}
           <span onClick={() => navigate("/add-task")}>Add</span> some tasks with
           photos and enjoy! 😉
-        </p>
+        </motion.p>
       ) : (
-        <p className="app__home-msg">
+        <motion.p
+          whileInView={{ opacity: [0, 1], y: [100, 0] }}
+          transition={{ ease: "easeInOut", duration: 1 }}
+          className="app__home-msg"
+        >
           So what are you waiting for!{" "}
           <span onClick={() => navigate("/login")}>Login</span> now!
-        </p>
+        </motion.p>
       )}
       <footer>
         <p>
@@ -43,7 +78,7 @@ function Home() {
           <a href="www.kmiqbal.com">Iqbal</a>
         </p>
       </footer>
-    </div>
+    </motion.div>
   );
 }
 

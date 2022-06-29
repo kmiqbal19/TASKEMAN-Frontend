@@ -11,7 +11,7 @@ function LogIn() {
   const passwordRef = useRef(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+
   const dispatch = useDispatch();
   const { isLoading, isError } = useSelector((store) => store.auth);
   useEffect(() => {
@@ -33,11 +33,6 @@ function LogIn() {
     );
     emailRef.current.value = "";
     passwordRef.current.value = "";
-    setTimeout(() => {
-      if (isLoading === false && isError === false) {
-        navigate("/");
-      }
-    }, 1500);
   };
   return (
     <div className="app__login">
