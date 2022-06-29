@@ -6,13 +6,14 @@ import { updateUser } from "../../features/auth/authSlice.js";
 import { toast } from "react-toastify";
 import { BiImageAdd } from "react-icons/bi";
 import userSettings from "../../assets/user-settings.png";
+import { motion } from "framer-motion";
 function UserSettings() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [file, setFile] = useState(null);
   const store = useSelector((store) => store.auth);
   const user = store.userData.user;
-  const { isLoading, isSuccess, isError } = store;
+  const { isLoading } = store;
   const dispatch = useDispatch();
   useEffect(() => {
     setName(user.name);
@@ -35,11 +36,20 @@ function UserSettings() {
     }, 500);
   };
   return (
-    <div className="app__user-settings">
+    <motion.div
+      exit={{ x: "-100vw" }}
+      transition={{ ease: "easeOut" }}
+      className="app__user-settings"
+    >
       <div className="user-settings__img">
         <img src={userSettings} alt="user-setting-img" />
       </div>
-      <form onSubmit={handleSubmit} className="user-settings__wrapper">
+      <motion.form
+        animate={{ x: [100, 0], opacity: [0, 1] }}
+        transition={{ ease: "easeOut", duration: 0.5 }}
+        onSubmit={handleSubmit}
+        className="user-settings__wrapper"
+      >
         <img
           src={
             file && file.type.startsWith("image")
@@ -73,8 +83,8 @@ function UserSettings() {
         <Link to="/change-password" style={{ marginTop: "1rem" }}>
           Change password
         </Link>
-      </form>
-    </div>
+      </motion.form>
+    </motion.div>
   );
 }
 

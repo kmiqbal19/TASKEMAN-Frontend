@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { createTask, reset } from "../../features/task/taskSlice";
 import { toast } from "react-toastify";
 import addImage from "../../assets/add-img.png";
+import { motion } from "framer-motion";
 function AddTask() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -44,13 +45,21 @@ function AddTask() {
     }, 500);
   };
   return (
-    <div className="app__add-task">
+    <motion.div
+      exit={{ x: "100vw" }}
+      transition={{ ease: "easeOut" }}
+      className="app__add-task"
+    >
       {file && file.type.startsWith("image") ? (
         <img src={URL.createObjectURL(file)} alt="task-img" />
       ) : (
         <img src={addImage} alt="add-img-task" />
       )}
-      <form onSubmit={handleSubmit}>
+      <motion.form
+        animate={{ y: [100, 0], opacity: [0, 1] }}
+        transition={{ ease: "easeOut", duration: 0.5 }}
+        onSubmit={handleSubmit}
+      >
         <label htmlFor="add-task__file">
           <BiImageAdd /> Click to add an image...
         </label>
@@ -78,8 +87,8 @@ function AddTask() {
         >
           {isLoading ? "Adding..." : "Add"}
         </button>
-      </form>
-    </div>
+      </motion.form>
+    </motion.div>
   );
 }
 

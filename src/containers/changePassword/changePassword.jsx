@@ -5,6 +5,7 @@ import { logout, reset, updatePassword } from "../../features/auth/authSlice";
 import { toast } from "react-toastify";
 import changePasswordImg from "../../assets/change-password.png";
 import passImg from "../../assets/pass.png";
+import { motion } from "framer-motion";
 function ChangePassword() {
   const [currentPassword, setCurrentPassword] = useState("");
   const [password, setPassword] = useState("");
@@ -34,11 +35,19 @@ function ChangePassword() {
     dispatch(updatePassword(data));
   };
   return (
-    <div className="app__change-password">
+    <motion.div
+      exit={{ x: "100vw" }}
+      transition={{ ease: "easeInOut" }}
+      className="app__change-password"
+    >
       <div className="app__change-password--img">
         <img src={changePasswordImg} alt="change-password-img" />
       </div>
-      <form onSubmit={handleSubmit}>
+      <motion.form
+        animate={{ x: [100, 0] }}
+        transition={{ ease: "easeOut" }}
+        onSubmit={handleSubmit}
+      >
         <img src={passImg} alt="security-img" />
         <label>Current Password</label>
         <input
@@ -72,8 +81,8 @@ function ChangePassword() {
         >
           {isLoading ? "Updating..." : "Update"}
         </button>
-      </form>
-    </div>
+      </motion.form>
+    </motion.div>
   );
 }
 
