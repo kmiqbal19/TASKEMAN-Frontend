@@ -14,7 +14,7 @@ div.app__add-task {
   img {
     width: 40%;
     height: 60vh;
-    object-fit: cover;
+    object-fit: contain;
     margin: 0rem 5rem;
     border-radius: 1rem;
     filter: grayscale(0.9);
