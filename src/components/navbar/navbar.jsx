@@ -64,7 +64,7 @@ function NavBar() {
               />
               <span>
                 {username.charAt(0).toUpperCase() +
-                  username.slice(1).toLowerCase()}
+                  username.slice(1, 7).toLowerCase()}
               </span>
             </NavLink>
           </div>

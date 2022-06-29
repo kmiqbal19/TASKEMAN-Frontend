@@ -2,6 +2,7 @@ div.app__tasks--container {
   width: 100vw;
   height: 100%;
   margin-top: 10rem;
+  margin-bottom: 5rem;
   display: flex;
 
   flex-wrap: wrap;
@@ -34,5 +35,18 @@ div.app__tasks--container {
   div.task-motion {
     width: 40%;
     height: calc(200px + 5vh);
+    @media screen and(min-width: 2000px) {
+      height: calc(200px + 10vh);
+    }
+    @media screen and(max-width: 1200px) {
+      height: calc(300px + 20vh);
+    }
+    @media screen and(max-width: 850px) {
+      width: 70%;
+      margin-bottom: 2rem;
+    }
+    @media screen and(max-width: 450px) {
+      width: 80%;
+    }
   }
 }

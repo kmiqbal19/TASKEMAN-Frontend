@@ -74,8 +74,18 @@ function Home() {
       )}
       <footer>
         <p>
-          &copy; 2022 All rights reserved. Developed by {">_"}{" "}
-          <a href="www.kmiqbal.com">Iqbal</a>
+          &copy; 2022 All rights reserved. Developed by {">_~"}{" "}
+          <a
+            href="https://kmiqbal.com/"
+            style={{
+              color: "white",
+              // fontSize: "1.1rem",
+              letterSpacing: "1px",
+              textShadow: "2px 2px 8px cyan",
+            }}
+          >
+            Iqbal
+          </a>
         </p>
       </footer>
     </motion.div>
