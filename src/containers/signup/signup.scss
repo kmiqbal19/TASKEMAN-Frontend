@@ -2,8 +2,13 @@ div.app__signup {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100%;
   h1 {
-    margin: 8rem auto 1rem;
+    margin: 8rem auto 3rem;
+    @media screen and (min-width: 2000px) {
+      margin-top: calc(7rem + 7vw);
+      margin-bottom: 5rem;
+    }
   }
   form {
     display: flex;
@@ -11,15 +16,34 @@ div.app__signup {
     border: 1px solid black;
     width: 30%;
     padding: 2rem;
+    margin-bottom: 5rem;
+    @media screen and (max-width: 1300px) {
+      width: 40%;
+    }
+    @media screen and (max-width: 800px) {
+      width: 50%;
+    }
+    @media screen and (max-width: 650px) {
+      width: 70%;
+    }
+    @media screen and (max-width: 500px) {
+      width: 80%;
+    }
     label,
     input {
       margin-bottom: 0.8rem;
+      @media screen and (min-width: 2000px) {
+        margin-bottom: 1.2rem;
+      }
     }
     input {
       padding: 0.5rem 1rem;
       border-radius: 5px;
       border: 1px solid black;
       font-size: 1.1rem;
+      @media screen and (min-width: 2000px) {
+        padding: 1rem;
+      }
       &:focus {
         outline: 2px solid black;
       }
@@ -32,6 +56,9 @@ div.app__signup {
       border-radius: 5px;
       font-size: 1rem;
       cursor: pointer;
+      @media screen and (min-width: 2000px) {
+        padding: 1rem;
+      }
       &:hover {
         background-color: rgb(52, 51, 51);
       }
