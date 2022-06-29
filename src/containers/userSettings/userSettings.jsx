@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./userSettings.scss";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { updateUser } from "../../features/auth/authSlice.js";
+import { reset, updateUser } from "../../features/auth/authSlice.js";
 import { toast } from "react-toastify";
 import { BiImageAdd } from "react-icons/bi";
 import userSettings from "../../assets/user-settings.png";
@@ -13,12 +13,18 @@ function UserSettings() {
   const [file, setFile] = useState(null);
   const store = useSelector((store) => store.auth);
   const user = store.userData.user;
-  const { isLoading } = store;
+  const { isLoading, isSuccess } = store;
   const dispatch = useDispatch();
   useEffect(() => {
     setName(user.name);
     setEmail(user.email);
-  }, [user.email, user.name]);
+    if (isSuccess) {
+      window.location.reload();
+    }
+    return () => {
+      dispatch(reset());
+    };
+  }, [dispatch, isSuccess, user.email, user.name]);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -31,9 +37,10 @@ function UserSettings() {
 
     dispatch(updateUser(data));
     toast.dark("✨ Your profile has been updated!");
-    setTimeout(() => {
-      window.location.replace("/");
-    }, 500);
+
+    // setTimeout(() => {
+    //   window.location.replace("/");
+    // }, 500);
   };
   return (
     <motion.div
@@ -54,7 +61,7 @@ function UserSettings() {
           src={
             file && file.type.startsWith("image")
               ? URL.createObjectURL(file)
-              : `http://localhost:5000/users/${user.photo}`
+              : `https://add-task-backend.herokuapp.com/users/${user.photo}`
           }
           alt="user-img"
         />

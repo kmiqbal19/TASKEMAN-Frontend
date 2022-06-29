@@ -23,7 +23,10 @@ function Task({ task }) {
         className="task--container"
       >
         <div className="task__img">
-          <img src={`http://localhost:5000/tasks/${task.photo}`} alt="task" />
+          <img
+            src={`https://add-task-backend.herokuapp.com/tasks/${task.photo}`}
+            alt="task"
+          />
         </div>
 
         <div className="task__desc">

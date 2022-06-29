@@ -1,4 +1,5 @@
-import axios from "axios";
+// import axios from "axios";
+import axiosInstance from "../../axiosConfig";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -6,7 +7,7 @@ const initialState = {
   tasks: [],
   isLoading: false,
   isError: false,
-  isSuccess: false,
+  Success: false,
   message: "",
 };
 
@@ -21,7 +22,8 @@ export const createTask = createAsyncThunk(
           Authorization: `Bearer ${token}`,
         },
       };
-      const response = await axios.post("/tasks", taskData, config);
+      const response = await axiosInstance.post("/tasks", taskData, config);
+
       return response.data.data.task;
     } catch (err) {
       const message = err.response.data.message || err.toString();
@@ -40,10 +42,12 @@ export const getTasks = createAsyncThunk(
           Authorization: `Bearer ${token}`,
         },
       };
-      const response = await axios.get("/tasks", config);
+      const response = await axiosInstance.get("/tasks", config);
+
       return response.data.data.tasks;
     } catch (err) {
       const message = err.response.data.message || err.toString();
+
       return thunkAPI.rejectWithValue(message);
     }
   }
@@ -59,7 +63,7 @@ export const deleteTask = createAsyncThunk(
           Authorization: `Bearer ${token}`,
         },
       };
-      const response = await axios.delete(`/tasks/${taskId}`, config);
+      const response = await axiosInstance.delete(`/tasks/${taskId}`, config);
       return response.data.deletedTaskId;
     } catch (err) {
       const message = err.response.data.message || err.toString();
@@ -78,7 +82,7 @@ export const updateTask = createAsyncThunk(
           Authorization: `Bearer ${token}`,
         },
       };
-      const response = await axios.patch(
+      const response = await axiosInstance.patch(
         `/tasks/${taskUpdateData.taskId}`,
         taskUpdateData.updateData,
         config
@@ -96,7 +100,7 @@ export const taskSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
-      state.isSuccess = false;
+      state.Success = false;
       state.isError = false;
       state.isLoading = false;
     },
@@ -108,14 +112,14 @@ export const taskSlice = createSlice({
       })
       .addCase(createTask.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.isSuccess = true;
+        state.Success = true;
         state.task = action.payload;
         state.tasks.push(action.payload);
       })
       .addCase(createTask.rejected, (state, action) => {
         state.isError = true;
         state.isLoading = false;
-        state.isSuccess = false;
+        state.Success = false;
         state.message = action.payload;
         state.task = null;
       })
@@ -124,13 +128,13 @@ export const taskSlice = createSlice({
       })
       .addCase(getTasks.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.isSuccess = true;
+        state.Success = true;
         state.tasks = action.payload;
       })
       .addCase(getTasks.rejected, (state, action) => {
         state.isError = true;
         state.isLoading = false;
-        state.isSuccess = false;
+        state.Success = false;
         state.message = action.payload;
       })
       .addCase(deleteTask.pending, (state) => {
@@ -138,7 +142,7 @@ export const taskSlice = createSlice({
       })
       .addCase(deleteTask.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.isSuccess = true;
+        state.Success = true;
         state.tasks = state.tasks.filter((task) => {
           return task._id !== action.payload;
         });
@@ -146,7 +150,7 @@ export const taskSlice = createSlice({
       .addCase(deleteTask.rejected, (state, action) => {
         state.isError = true;
         state.isLoading = false;
-        state.isSuccess = false;
+        state.Success = false;
         state.message = action.payload;
       })
       .addCase(updateTask.pending, (state) => {
@@ -154,13 +158,13 @@ export const taskSlice = createSlice({
       })
       .addCase(updateTask.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.isSuccess = true;
+        state.Success = true;
         state.task = action.payload;
       })
       .addCase(updateTask.rejected, (state, action) => {
         state.isError = true;
         state.isLoading = false;
-        state.isSuccess = false;
+        state.Success = false;
         state.message = action.payload;
       });
   },

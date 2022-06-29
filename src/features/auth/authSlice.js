@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+// import axios from "axios";
+import axiosInstance from "../../axiosConfig.js";
 // Get user from local storage
 const userData = JSON.parse(localStorage.getItem("userData"));
 const initialState = {
@@ -15,7 +16,7 @@ export const signup = createAsyncThunk(
   "auth/signup",
   async (signupData, thunkAPI) => {
     try {
-      const response = await axios.post("/users/signup", signupData);
+      const response = await axiosInstance.post("/users/signup", signupData);
       if (response.data) {
         localStorage.setItem("userData", JSON.stringify(response.data.data));
       }
@@ -31,7 +32,7 @@ export const login = createAsyncThunk(
   "auth/login",
   async (loginData, thunkAPI) => {
     try {
-      const response = await axios.post("/users/login", loginData);
+      const response = await axiosInstance.post("/users/login", loginData);
       if (response.data) {
         localStorage.setItem("userData", JSON.stringify(response.data.data));
       }
@@ -57,7 +58,7 @@ export const updateUser = createAsyncThunk(
       },
     };
     try {
-      const response = await axios.put(
+      const response = await axiosInstance.put(
         "/users/updateUserData",
         updateData,
         config
@@ -86,7 +87,7 @@ export const updatePassword = createAsyncThunk(
       },
     };
     try {
-      const response = await axios.patch(
+      const response = await axiosInstance.patch(
         "/users/changePassword",
         updatePasswordData,
         config

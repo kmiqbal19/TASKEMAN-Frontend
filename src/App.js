@@ -34,7 +34,7 @@ function App() {
             path="/change-password"
             element={user ? <ChangePassword /> : <Home />}
           />
-          <Route path="/tasks" element={user ? <Tasks /> : <LogIn />} />
+          <Route path="/tasks" element={user ? <Tasks /> : <Home />} />
           <Route
             path="/tasks/:id"
             element={user ? <SinglePageTask /> : <LogIn />}

@@ -13,7 +13,9 @@ import { toast } from "react-toastify";
 function NavBar() {
   const userData = useSelector((store) => store.auth.userData);
   const user = userData ? userData.user : null;
-  const username = user ? user.name.split(" ")[0] : "Username";
+  // const username = user
+  //   ? user.name.charAt(0).toUpperCase() + user.name.slice(1, 7)
+  //   : "Username";
   const dispatch = useDispatch();
   const [toggle, setToggle] = useState(false);
   const handleLogout = () => {
@@ -59,12 +61,13 @@ function NavBar() {
               to="user-settings"
             >
               <img
-                src={`http://localhost:5000/users/${user.photo}`}
+                src={`https://add-task-backend.herokuapp.com/users/${user.photo}`}
                 alt="user"
               />
               <span>
-                {username.charAt(0).toUpperCase() +
-                  username.slice(1, 7).toLowerCase()}
+                {user.name
+                  ? user.name.charAt(0).toUpperCase() + user.name.slice(1, 7)
+                  : "Username"}
               </span>
             </NavLink>
           </div>
@@ -97,7 +100,7 @@ function NavBar() {
                 <div>
                   <NavLink to="user-settings" onClick={() => setToggle(false)}>
                     <img
-                      src={`http://localhost:5000/users/${user.photo}`}
+                      src={`https://add-task-backend.herokuapp.com/users/${user.photo}`}
                       alt="user"
                     />
                   </NavLink>

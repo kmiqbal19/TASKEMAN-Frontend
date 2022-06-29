@@ -10,28 +10,24 @@ function AddTask() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [file, setFile] = useState(null);
-  const [success, setSuccess] = useState(false);
   const store = useSelector((store) => store.tasks);
-  const { isLoading, isError, isSuccess } = store;
+  const { isLoading, isError, Success } = store;
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(isError);
     if (isError) {
       toast.error("⚠️ Something went wrong!");
-      setSuccess(false);
     }
-    if (success) {
+    if (Success) {
       toast.dark("✨💖 Your task has been added. 🎉");
       setTimeout(() => {
         window.location.replace("/tasks");
       }, 1500);
     }
     return () => {
-      dispatch(reset());
-      setSuccess(false);
+      return dispatch(reset());
     };
-  }, [dispatch, isError, isSuccess, success]);
+  }, [Success, dispatch, isError]);
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -40,9 +36,6 @@ function AddTask() {
     data.append("description", description);
     data.append("photo", file);
     dispatch(createTask(data));
-    setTimeout(() => {
-      setSuccess(true);
-    }, 500);
   };
   return (
     <motion.div
@@ -82,7 +75,7 @@ function AddTask() {
           onChange={(e) => setDescription(e.target.value)}
         />
         <button
-          disabled={isLoading || !title || !description || success}
+          disabled={isLoading || !title || !description || Success}
           type="submit"
         >
           {isLoading ? "Adding..." : "Add"}

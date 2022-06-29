@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 function Tasks() {
   const store = useSelector((store) => store.tasks);
+  const { isLoading } = store;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -22,7 +23,8 @@ function Tasks() {
       transition={{ ease: "easeInOut" }}
       className="app__tasks--container"
     >
-      {store.tasks.length === 0 && (
+      {isLoading && <h1>Loading...</h1>}
+      {!isLoading && store.tasks.length === 0 && (
         <div className="app__tasks-none">
           <ImSad />
           <p>
@@ -44,8 +46,9 @@ function Tasks() {
       {store.tasks.map((task, i) => {
         return (
           <motion.div
+            key={`frame-task${i}`}
             className="task-motion"
-            initial={{ opacity: 0, x: -100 }}
+            initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ ease: "easeInOut", delay: i * 0.5 }}
           >

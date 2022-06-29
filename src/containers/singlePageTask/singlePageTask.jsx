@@ -2,13 +2,17 @@ import React, { useState, useEffect } from "react";
 import "./singlePageTask.scss";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import axios from "axios";
+// import axios from "axios";
+import axiosInstance from "../../axiosConfig.js";
 import { toast } from "react-toastify";
 import { FiEdit } from "react-icons/fi";
 import { AiOutlineDelete } from "react-icons/ai";
 import { MdAddPhotoAlternate } from "react-icons/md";
+import defaultPic from "../../assets/add-img.png";
+
 function SinglePageTask() {
   const [task, setTask] = useState({});
+  const [shouldFetch, setShouldFetch] = useState(true);
   const [updateMode, setUpdateMode] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -24,7 +28,8 @@ function SinglePageTask() {
             Authorization: `Bearer ${token}`,
           },
         };
-        const res = await axios.get(`/tasks/${path}`, config);
+
+        const res = await axiosInstance.get(`/tasks/${path}`, config);
         setTask(res.data.data.task);
         setTitle(res.data.data.task.taskTitle);
         setDescription(res.data.data.task.taskDescription);
@@ -33,11 +38,14 @@ function SinglePageTask() {
         toast.error("⚠️ Couldn't find the task");
       }
     };
-    fetchTask();
+    if (shouldFetch) {
+      fetchTask();
+    }
     return () => {
       setTask({});
+      setShouldFetch(false);
     };
-  }, [path, token]);
+  }, [path, shouldFetch, token]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData();
@@ -52,7 +60,7 @@ function SinglePageTask() {
           Authorization: `Bearer ${token}`,
         },
       };
-      const res = await axios.patch(`/tasks/${path}`, data, config);
+      const res = await axiosInstance.patch(`/tasks/${path}`, data, config);
       setTask(res.data.data.task);
       window.location.reload();
       setUpdateMode(false);
@@ -65,7 +73,7 @@ function SinglePageTask() {
           Authorization: `Bearer ${token}`,
         },
       };
-      await axios.delete(`/tasks/${path}`, config);
+      await axiosInstance.delete(`/tasks/${path}`, config);
 
       toast.error("🚮 Item has been deleted!");
       setTimeout(() => {
@@ -77,11 +85,19 @@ function SinglePageTask() {
   };
   return (
     <div className="app__single-task">
-      {!updateMode && (
-        <img src={`http://localhost:5000/tasks/${task.photo}`} alt="task-img" />
+      {!updateMode && task.photo ? (
+        <img
+          src={`https://add-task-backend.herokuapp.com/tasks/${task.photo}`}
+          alt="task-img"
+        />
+      ) : (
+        <img src={defaultPic} alt="default-pic" />
       )}
       {updateMode && !file && (
-        <img src={`http://localhost:5000/tasks/${task.photo}`} alt="task-img" />
+        <img
+          src={`https://add-task-backend.herokuapp.com/tasks/${task.photo}`}
+          alt="task-img"
+        />
       )}
       {updateMode && file && file.type.startsWith("image") && (
         <img src={URL.createObjectURL(file)} alt="task-img" />

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./changePassword.scss";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, reset, updatePassword } from "../../features/auth/authSlice";
 import { toast } from "react-toastify";
@@ -12,13 +13,14 @@ function ChangePassword() {
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const dispatch = useDispatch();
   const { isLoading, isSuccess, isError } = useSelector((store) => store.auth);
+  const navigate = useNavigate();
   useEffect(() => {
     if (isSuccess) {
       toast.dark("✨🎉Password changed successfully!🎉");
       toast("⚠️ Please login again!");
       setTimeout(() => {
         dispatch(logout());
-        // window.location.replace("/");
+        navigate("/");
       }, 2000);
     }
     if (isError) {
@@ -27,7 +29,7 @@ function ChangePassword() {
     return () => {
       dispatch(reset);
     };
-  }, [dispatch, isError, isSuccess]);
+  }, [dispatch, isError, isSuccess, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
