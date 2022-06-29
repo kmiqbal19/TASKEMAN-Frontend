@@ -5,6 +5,7 @@ import { getTasks, reset } from "../../features/task/taskSlice.js";
 import Task from "../../components/task/task.jsx";
 import { ImSad } from "react-icons/im";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 function Tasks() {
   const store = useSelector((store) => store.tasks);
   const dispatch = useDispatch();
@@ -16,7 +17,11 @@ function Tasks() {
     };
   }, [dispatch]);
   return (
-    <div className="app__tasks--container">
+    <motion.div
+      exit={{ x: "-100vw" }}
+      transition={{ ease: "easeInOut" }}
+      className="app__tasks--container"
+    >
       {store.tasks.length === 0 && (
         <div className="app__tasks-none">
           <ImSad />
@@ -37,9 +42,18 @@ function Tasks() {
         </div>
       )}
       {store.tasks.map((task, i) => {
-        return <Task key={`task${i}`} task={task} />;
+        return (
+          <motion.div
+            className="task-motion"
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ ease: "easeInOut", delay: i * 0.5 }}
+          >
+            <Task key={`task${i}`} task={task} />;
+          </motion.div>
+        );
       })}
-    </div>
+    </motion.div>
   );
 }
 

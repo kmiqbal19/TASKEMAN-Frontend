@@ -1,11 +1,11 @@
 import React from "react";
 import "./task.scss";
-
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteTask } from "../../features/task/taskSlice";
 import { MdOutlineCancel } from "react-icons/md";
 import { toast } from "react-toastify";
+
 function Task({ task }) {
   const dispatch = useDispatch();
   const handleDelete = () => {

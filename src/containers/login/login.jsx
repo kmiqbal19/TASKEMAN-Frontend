@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./login.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { login, reset } from "../../features/auth/authSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { motion } from "framer-motion";
 function LogIn() {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -35,7 +35,11 @@ function LogIn() {
     passwordRef.current.value = "";
   };
   return (
-    <div className="app__login">
+    <motion.div
+      exit={{ x: "-100vw" }}
+      transition={{ ease: "easeOut" }}
+      className="app__login"
+    >
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         <label>Email</label>
@@ -67,7 +71,7 @@ function LogIn() {
           Don't have account? <Link to="/signup">Sign up</Link>
         </p>
       </form>
-    </div>
+    </motion.div>
   );
 }
 

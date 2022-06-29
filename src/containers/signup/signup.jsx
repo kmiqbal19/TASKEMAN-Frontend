@@ -4,6 +4,7 @@ import { signup } from "../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion";
 function SignUp() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -32,7 +33,11 @@ function SignUp() {
     }, 1500);
   };
   return (
-    <div className="app__signup">
+    <motion.div
+      exit={{ x: "100vw" }}
+      transition={{ ease: "easeOut" }}
+      className="app__signup"
+    >
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <label>Name</label>
@@ -82,7 +87,7 @@ function SignUp() {
           {isLoading ? "Signing up..." : "Sign Up"}
         </button>
       </form>
-    </div>
+    </motion.div>
   );
 }
 

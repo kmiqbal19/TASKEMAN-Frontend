@@ -5,6 +5,7 @@ import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 function BtnSlider({ moveSlide, direction }) {
   return (
     <button
+      title={direction === "next" ? "Go right" : "Go left"}
       className={
         direction === "next"
           ? "slider__btn slider__btn--next"
