@@ -96,17 +96,9 @@ function SinglePageTask() {
     <div className="app__single-task">
       {loading && <Spinner />}
       {!task.photo && <img src={defaultPic} alt="default-pic" />}
-      {!updateMode && task.photo && (
-        <img
-          src={`https://add-task-backend.herokuapp.com/tasks/${task.photo}`}
-          alt="task-img"
-        />
-      )}
+      {!updateMode && task.photo && <img src={task.photo} alt="task-img" />}
       {updateMode && !file && task.photo && (
-        <img
-          src={`https://add-task-backend.herokuapp.com/tasks/${task.photo}`}
-          alt="task-img"
-        />
+        <img src={task.photo} alt="task-img" />
       )}
       {updateMode && file && file.type.startsWith("image") && (
         <img src={URL.createObjectURL(file)} alt="task-img" />

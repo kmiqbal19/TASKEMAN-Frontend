@@ -38,10 +38,6 @@ function UserSettings() {
 
     dispatch(updateUser(data));
     toast.dark("✨ Your profile has been updated!");
-
-    // setTimeout(() => {
-    //   window.location.replace("/");
-    // }, 500);
   };
   return (
     <motion.div
@@ -63,7 +59,7 @@ function UserSettings() {
           src={
             file && file.type.startsWith("image")
               ? URL.createObjectURL(file)
-              : `https://add-task-backend.herokuapp.com/users/${user.photo}`
+              : user.photo
           }
           alt="user-img"
         />

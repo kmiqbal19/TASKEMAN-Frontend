@@ -26,14 +26,16 @@ div.app__home {
   }
   p.app__home-msg {
     margin: 5rem auto;
-    font-size: calc(1.5rem + 1vw);
+    font-size: calc(1.5rem + 0.5vw);
     // background-color: rgba(236, 236, 238, 0.606);
     width: 100%;
     padding: 1rem;
     text-align: center;
     @media screen and (max-width: 600px) {
       padding: 1rem 1.5rem;
+      font-size: calc(1rem + 0.5vw);
     }
+
     span {
       color: navy;
       font-weight: bold;

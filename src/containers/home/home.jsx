@@ -64,8 +64,8 @@ function Home() {
         </motion.p>
       ) : (
         <motion.p
-          whileInView={{ opacity: [0, 1], y: [100, 0] }}
-          transition={{ ease: "easeInOut", duration: 1 }}
+          whileInView={{ opacity: [0, 1], y: [50, 0] }}
+          transition={{ ease: "easeOut", duration: 1 }}
           className="app__home-msg"
         >
           So what are you waiting for!{" "}

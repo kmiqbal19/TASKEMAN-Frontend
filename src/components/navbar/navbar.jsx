@@ -62,10 +62,7 @@ function NavBar() {
               to="user-settings"
             >
               {user.photo ? (
-                <img
-                  src={`https://add-task-backend.herokuapp.com/users/${user.photo}`}
-                  alt="user"
-                />
+                <img src={user.photo} alt="user" />
               ) : (
                 <img src={defaultAvatar} alt="user" />
               )}

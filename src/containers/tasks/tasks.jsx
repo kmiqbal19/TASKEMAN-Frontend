@@ -53,7 +53,7 @@ function Tasks() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ ease: "easeInOut", delay: i * 0.5 }}
           >
-            <Task key={`task${i}`} task={task} />;
+            <Task key={task._id} task={task} />;
           </motion.div>
         );
       })}
