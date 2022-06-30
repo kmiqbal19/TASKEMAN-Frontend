@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { deleteTask } from "../../features/task/taskSlice";
 import { MdOutlineCancel } from "react-icons/md";
 import { toast } from "react-toastify";
-
+import defaultTask from "../../assets/defaultTask.jpg";
 function Task({ task }) {
   const dispatch = useDispatch();
   const handleDelete = () => {
@@ -23,7 +23,7 @@ function Task({ task }) {
         className="task--container"
       >
         <div className="task__img">
-          <img src={task.photo} alt="task" />
+          <img src={task.photo || defaultTask} alt="task" />
         </div>
 
         <div className="task__desc">
