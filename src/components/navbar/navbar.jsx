@@ -101,10 +101,7 @@ function NavBar() {
               {user ? (
                 <div>
                   <NavLink to="user-settings" onClick={() => setToggle(false)}>
-                    <img
-                      src={`https://add-task-backend.herokuapp.com/users/${user.photo}`}
-                      alt="user"
-                    />
+                    <img src={user.photo} alt="user" />
                   </NavLink>
                   <span>{user.name}</span>
                   <NavLink to="/" onClick={() => setToggle(false)}>
