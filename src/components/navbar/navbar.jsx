@@ -69,7 +69,7 @@ function NavBar() {
               <span>
                 {user.name
                   ? user.name.charAt(0).toUpperCase() + user.name.slice(1, 7)
-                  : "Username"}
+                  : "User"}
               </span>
             </NavLink>
           </div>
@@ -101,9 +101,12 @@ function NavBar() {
               {user ? (
                 <div>
                   <NavLink to="user-settings" onClick={() => setToggle(false)}>
-                    <img src={user.photo} alt="user" />
+                    <img
+                      src={user.photo ? user.photo : defaultAvatar}
+                      alt="user"
+                    />
                   </NavLink>
-                  <span>{user.name}</span>
+                  <span>{user.name ? user.name : "USER"}</span>
                   <NavLink to="/" onClick={() => setToggle(false)}>
                     Home
                   </NavLink>
