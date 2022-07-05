@@ -26,7 +26,7 @@ function Slider() {
   useEffect(() => {
     if (slideIndex < 1) {
       setSlideIndex(slideData.length);
-    } else if (slideIndex >= slideData.length) {
+    } else if (slideIndex > slideData.length) {
       setSlideIndex(1);
     }
   }, [slideIndex]);
