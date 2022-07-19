@@ -74,9 +74,9 @@ function Home() {
       )}
       <footer>
         <p>
-          &copy; 2022 All rights reserved. Developed by {">_~"}{" "}
+          &copy; 2022 All rights reserved. Developed & designed by {">_~"}{" "}
           <a
-            href="https://kmiqbal.com/"
+            href="https://www.kmiqbal.com/"
             style={{
               color: "white",
               // fontSize: "1.1rem",
