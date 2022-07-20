@@ -1,21 +1,14 @@
-
 # Project Title
 
 TASKEMAN (Task Management App) Client Side
-
 
 ## Demo
 
 ![App Screenshot](https://i.ibb.co/rH7FCV5/new.gif)
 
-
 ## Authors
 
 - [@kmiqbal19](https://github.com/kmiqbal19)
-
-
-![Logo](https://i.ibb.co/7jrh2YF/Taskeman.png)
-
 
 ## API Reference
 
@@ -25,11 +18,11 @@ TASKEMAN (Task Management App) Client Side
    POST /api/v1/users/signup
 ```
 
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `name` | `string` | **Required**. Your name |
-| `email` | `string` | **Required**. Your email address |
-| `password` | `string` | **Required**. Your given password |
+| Parameter         | Type     | Description                              |
+| :---------------- | :------- | :--------------------------------------- |
+| `name`            | `string` | **Required**. Your name                  |
+| `email`           | `string` | **Required**. Your email address         |
+| `password`        | `string` | **Required**. Your given password        |
 | `passwordConfirm` | `string` | **Required**. Your password confirmation |
 
 #### User login
@@ -38,11 +31,10 @@ TASKEMAN (Task Management App) Client Side
    POST /api/v1/users/login
 ```
 
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `email` | `string` | **Required**. Your email address |
+| Parameter  | Type     | Description                       |
+| :--------- | :------- | :-------------------------------- |
+| `email`    | `string` | **Required**. Your email address  |
 | `password` | `string` | **Required**. Your given password |
-
 
 #### User Update Data
 
@@ -50,15 +42,11 @@ TASKEMAN (Task Management App) Client Side
    PUT /api/v1/users/updateUserData
 ```
 
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `email` | `string` | **Required**. Your email address |
-| `name` | `string` | **Required**. Your name |
-| `photo` | `file` | **Not Required**. Your image |
-
-
-
-
+| Parameter | Type     | Description                      |
+| :-------- | :------- | :------------------------------- |
+| `email`   | `string` | **Required**. Your email address |
+| `name`    | `string` | **Required**. Your name          |
+| `photo`   | `file`   | **Not Required**. Your image     |
 
 #### Change Password
 
@@ -66,10 +54,10 @@ TASKEMAN (Task Management App) Client Side
   PATCH /api/v1/users/changePassword
 ```
 
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `currentPassword` | `string` | **Required** Users current password |
-| `password` | `string` | **Required**. Users password |
+| Parameter         | Type     | Description                               |
+| :---------------- | :------- | :---------------------------------------- |
+| `currentPassword` | `string` | **Required** Users current password       |
+| `password`        | `string` | **Required**. Users password              |
 | `passwordConfirm` | `string` | **Required**. Users password Confirmation |
 
 #### Get all tasks
@@ -78,9 +66,9 @@ TASKEMAN (Task Management App) Client Side
   GET /api/v1/tasks
 ```
 
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `jwt` | `string` | **Required**. Your jwt token |
+| Parameter | Type     | Description                  |
+| :-------- | :------- | :--------------------------- |
+| `jwt`     | `string` | **Required**. Your jwt token |
 
 #### Get task
 
@@ -91,42 +79,42 @@ TASKEMAN (Task Management App) Client Side
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Id of task to fetch |
-| `jwt` | `string` | **Required**. Your jwt token |
+| `jwt`     | `string` | **Required**. Your jwt token      |
 
 #### Update task
+
 ```http
   PATCH /api/task/${id}
 ```
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
+| Parameter | Type     | Description                        |
+| :-------- | :------- | :--------------------------------- |
 | `id`      | `string` | **Required**. Id of task to update |
-| `jwt` | `string` | **Required**. Your jwt token |
+| `jwt`     | `string` | **Required**. Your jwt token       |
 
 #### Create task
+
 ```http
   POST /api/tasks
 ```
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `jwt` | `string` | **Required**. Your jwt token |
-| `title` | `string` | **Required**. Your task title |
+| Parameter     | Type     | Description                         |
+| :------------ | :------- | :---------------------------------- |
+| `jwt`         | `string` | **Required**. Your jwt token        |
+| `title`       | `string` | **Required**. Your task title       |
 | `description` | `string` | **Required**. Your task description |
-| `photo` | `file` | **Not Required**. Your task photo |
+| `photo`       | `file`   | **Not Required**. Your task photo   |
 
 #### Delete task
+
 ```http
   DELETE /api/task/${id}
 ```
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
+| Parameter | Type     | Description                        |
+| :-------- | :------- | :--------------------------------- |
 | `id`      | `string` | **Required**. Id of task to delete |
-| `jwt` | `string` | **Required**. Your jwt token |
-
-
-
+| `jwt`     | `string` | **Required**. Your jwt token       |
 
 ## Documentation
 
