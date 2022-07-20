@@ -73,7 +73,7 @@ TASKEMAN (Task Management App) Client Side
 #### Get task
 
 ```http
-  GET /api/task/${id}
+  GET /api/v1/task/${id}
 ```
 
 | Parameter | Type     | Description                       |
@@ -95,7 +95,7 @@ TASKEMAN (Task Management App) Client Side
 #### Create task
 
 ```http
-  POST /api/tasks
+  POST /api/v1/tasks
 ```
 
 | Parameter     | Type     | Description                         |
@@ -108,7 +108,7 @@ TASKEMAN (Task Management App) Client Side
 #### Delete task
 
 ```http
-  DELETE /api/task/${id}
+  DELETE /api/v1/task/${id}
 ```
 
 | Parameter | Type     | Description                        |
