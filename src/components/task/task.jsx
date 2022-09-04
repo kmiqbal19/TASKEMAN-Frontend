@@ -12,6 +12,7 @@ function Task({ task }) {
     dispatch(deleteTask(task._id));
     toast.dark("🗑️ This task has been  deleted! 🚮");
   };
+
   const navigate = useNavigate();
   return (
     <div className="task--container-main">
@@ -28,7 +29,7 @@ function Task({ task }) {
 
         <div className="task__desc">
           <p>{`${new Date(task.createdAt).toLocaleString("en-US")}`}</p>
-          <p>{task.taskTitle}</p>
+          <p>{task.taskTitle.toUpperCase()}</p>
           <p>{task.taskDescription}</p>
         </div>
       </div>

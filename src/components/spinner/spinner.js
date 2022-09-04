@@ -16,9 +16,9 @@ function Spinner() {
           cx="50"
           cy="50"
           r="33"
-          stroke-width="5"
+          strokeWidth="5"
           stroke="#fff"
-          stroke-dasharray="51.83627878423159 51.83627878423159"
+          strokeDasharray="51.83627878423159 51.83627878423159"
           fill="none"
         >
           <animateTransform

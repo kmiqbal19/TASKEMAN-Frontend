@@ -92,16 +92,26 @@ function SinglePageTask() {
       toast.error("⚠️ Couldn't delete.Something went wrong!");
     }
   };
+  const handleImageClick = (e) => {
+    e.target.classList.toggle("containImg");
+    console.log(e.target.classList);
+  };
   return (
     <div className="app__single-task">
       {loading && <Spinner />}
       {!task.photo && <img src={defaultPic} alt="default-pic" />}
-      {!updateMode && task.photo && <img src={task.photo} alt="task-img" />}
+      {!updateMode && task.photo && (
+        <img onClick={handleImageClick} src={task.photo} alt="task-img" />
+      )}
       {updateMode && !file && task.photo && (
-        <img src={task.photo} alt="task-img" />
+        <img onClick={handleImageClick} src={task.photo} alt="task-img" />
       )}
       {updateMode && file && file.type.startsWith("image") && (
-        <img src={URL.createObjectURL(file)} alt="task-img" />
+        <img
+          onClick={handleImageClick}
+          src={URL.createObjectURL(file)}
+          alt="task-img"
+        />
       )}
       {updateMode && file && !file.type.startsWith("image") && (
         <h1>⚠️ Please upload image only! It will cause an error...</h1>
@@ -139,7 +149,7 @@ function SinglePageTask() {
             onChange={(e) => setTitle(e.target.value)}
           />
         ) : (
-          <p>{task.taskTitle}</p>
+          <p style={{ textTransform: "uppercase" }}>{task.taskTitle}</p>
         )}
         <p>Task Description: </p>
         {updateMode ? (
