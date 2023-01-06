@@ -20,6 +20,7 @@ export const signup = createAsyncThunk(
       if (response.data) {
         localStorage.setItem("userData", JSON.stringify(response.data.data));
       }
+      console.log(response.data);
       return response.data.data;
     } catch (err) {
       const message = err.respose.data.message || err.toString();

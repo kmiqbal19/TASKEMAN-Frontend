@@ -13,6 +13,7 @@ import AddTask from "./containers/addTask/addTask.jsx";
 import SinglePageTask from "./containers/singlePageTask/singlePageTask.jsx";
 import ChangePassword from "./containers/changePassword/changePassword.jsx";
 import { AnimatePresence } from "framer-motion";
+import HerokuErrorModal from "./components/herokuError/HerokuErrorModal.jsx";
 function App() {
   const location = useLocation();
 
@@ -20,6 +21,7 @@ function App() {
   const user = userData ? userData.user : null;
   return (
     <>
+      <HerokuErrorModal />
       <NavBar />
       <AnimatePresence>
         <Routes location={location} key={location.key}>

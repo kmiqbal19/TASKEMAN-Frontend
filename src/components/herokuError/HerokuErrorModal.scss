@@ -1,0 +1,52 @@
+div.herokuapp-error__modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 30;
+  background-color: rgba(0, 0, 0, 0.86);
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  div {
+    width: 50vw;
+    height: 600px;
+    padding: 5rem;
+    border-radius: 3rem;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 5px 5px 10px blue;
+    h1 {
+      font-size: calc(2rem + 0.5vw);
+      text-align: center;
+      margin-bottom: 3vh;
+    }
+    p {
+      font-size: calc(0.5rem + 1vw);
+      text-align: center;
+      line-height: 1.5;
+    }
+    button {
+      align-self: flex-end;
+      padding: 1rem;
+      font-size: 1.5rem;
+      color: black;
+      background-color: white;
+      border: 1px solid black;
+      cursor: pointer;
+      transition: 0.3s all ease;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+.heroku-modal__hidden {
+  display: none !important;
+}
