@@ -31,6 +31,9 @@ div.herokuapp-error__modal {
       font-size: calc(0.5rem + 1vw);
       text-align: center;
       line-height: 1.5;
+      span {
+        color: red;
+      }
     }
     button {
       align-self: flex-end;

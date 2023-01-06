@@ -15,10 +15,10 @@ const HerokuErrorModal = () => {
         <button onClick={handleClick}>X</button>
         <h1>Announcement for TASKEMAN App</h1>
         <p>
-          This application's backend does not function since Heroku no longer
-          hosts backend apps on its free plans. However, if you're curious, you
-          may investigate on POSTMAN or localhost and look at the code. Check
-          out the code on this
+          This <span>application's backend</span> does not function since Heroku
+          no longer hosts backend apps on its free plans. However, if you're
+          curious, you may investigate on POSTMAN or localhost and look at the
+          code. Check out the code on this
           <a
             href="https://github.com/kmiqbal19/TASKEMAN-Backend-API"
             target="_blank"
