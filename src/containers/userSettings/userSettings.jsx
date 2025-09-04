@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./userSettings.scss";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -6,6 +6,7 @@ import { reset, updateUser } from "../../features/auth/authSlice.js";
 import { toast } from "react-toastify";
 import { BiImageAdd } from "react-icons/bi";
 import userSettings from "../../assets/user-settings.png";
+import defaultAvatar from "../../assets/defaultAvatar.jpg";
 import { motion } from "framer-motion";
 import Spinner from "../../components/spinner/spinner";
 function UserSettings() {
@@ -60,6 +61,8 @@ function UserSettings() {
             file && file.type.startsWith("image")
               ? URL.createObjectURL(file)
               : user.photo
+              ? user.photo
+              : defaultAvatar
           }
           alt="user-img"
         />

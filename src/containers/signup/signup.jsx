@@ -16,7 +16,7 @@ function SignUp() {
   const { isLoading, isError } = useSelector((store) => store.auth);
   useEffect(() => {
     if (isError) {
-      toast.error("Something went wrong.😢 Try Again!");
+      toast.error("Couldn't Sign Up 😢 Try Again!");
     }
   }, [isError]);
   const handleSubmit = (e) => {
