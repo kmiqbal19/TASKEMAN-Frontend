@@ -2,9 +2,17 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 // import axios from "axios";
 import axiosInstance from "../../axiosConfig.js";
 // Get user from local storage
-const userData = JSON.parse(localStorage.getItem("userData"));
+const getStoredUser = () => {
+  try {
+    const stored = localStorage.getItem("userData");
+    return stored ? JSON.parse(stored) : null;
+  } catch (err) {
+    console.error("Invalid userData in localStorage", err);
+    return null;
+  }
+};
 const initialState = {
-  userData: userData || null,
+  userData: getStoredUser(),
   isLoading: false,
   isError: false,
   isSuccess: false,
@@ -23,7 +31,7 @@ export const signup = createAsyncThunk(
       console.log(response.data);
       return response.data.data;
     } catch (err) {
-      const message = err.respose.data.message || err.toString();
+      const message = err.response.data.message || err.toString();
       thunkAPI.rejectWithValue(message);
     }
   }
@@ -39,7 +47,7 @@ export const login = createAsyncThunk(
       }
       return await response.data.data;
     } catch (err) {
-      const message = err.respose.data.message || err.toString();
+      const message = err.response.data.message || err.toString();
       thunkAPI.rejectWithValue(message);
     }
   }
